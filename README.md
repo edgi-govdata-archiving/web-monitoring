@@ -16,7 +16,7 @@ For more, see [the Version Tracking page on the EDGI website](https://envirodata
 In order to be useful, tools will need to be able to do the following:
 
 1. read archive directories and identify comparison candidates for a given URL
-2. perform diffs on large numbers of pages (a useful scale for our work is the "subdomain" -- a full or partial government domain that we have identified as relevant to environment/climate change).
+2. perform diffs on large numbers of pages (a useful scale for our work is the "subdomain" -- a full or partial government domain that we have identified as relevant to environment/climate change)
 3. filter those diffs to eliminate irrelevant, trivial, or repetitive changes
 4. output results in a form that is immediately acessible/helpful to an analyst. One likely format is a CSV file containing at least the following information:
    - page title
@@ -26,17 +26,25 @@ In order to be useful, tools will need to be able to do the following:
 
 ## Architecture
 
-The project is current divided into three repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces.
-
-* [web-monitoring-db](https://github.com/edgi-govdata-archiving/web-monitoring-db)
-  -- A Ruby on Rails app for serves diffs from a database and collects
+The project is current divided into three repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces:
+* [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db)  
+  A Ruby on Rails app for serves diffs from a database and collects
   human-entered annotations.
-
-* [web-monitoring-ui](https://github.com/edgi-govdata-archiving/web-monitoring-ui)
-  -- Front-end code (in TypeScript) provides useful views of the diffs. It
+* [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui)  
+  Front-end code (in TypeScript) provides useful views of the diffs. It
   communicates with the Rails app via JSON.
-
-* [web-monitoring-backend](https://github.com/edgi-govdata-archiving/web-monitoring-backend)
-  -- A Python backend ingests new captured HTML, computes diffs (for now, by
+* [**web-monitoring-processing**](https://github.com/edgi-govdata-archiving/web-monitoring-processing)  
+  A Python backend ingests new captured HTML, computes diffs (for now, by
   querying PageFreezer), performs prioritization/filtering, and populates
   databases for Rails app.
+
+## Resources
+
+### Sample Data
+
+[`example-data`](./example-data) contains examples of website changes:
+
+- `falsepos-...` files are cases any filter should catch
+- `truepos...` files are cases of changes we care about
+
+Filters will need to be tested (and possibly trained) against real datasets at some point
