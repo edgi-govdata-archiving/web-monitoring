@@ -6,7 +6,7 @@ EDGI is already monitoring tens of thousands of pages and will eventually be mon
 
 ## Project Goals
 
-The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on __meaningful changes__. The Website Monitoring automated system aims to make these changes easy to track, review, and report on.
+The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system aims to make these changes easy to track, review, and report on.
 
 For more, see [the Version Tracking page on the EDGI website](https://envirodatagov.org/version-tracking/) and watch this
 [50-minute Analyst training video](https://www.dropbox.com/s/ciixvu612ktf4nt/new_tracking_training.mp4?dl=0).
@@ -39,6 +39,17 @@ The project is current divided into three repositories handling complementary as
   databases for Rails app.
 
 ## Resources
+
+### Identifying "Meaningful Changes"
+
+The vast majority of changes to web pages are not relevant to analysts. One goal of this project is to avoid presenting irrelevant changes to analysts at all.  It is, of course, not trivial to identify "meaningful" changes immediately, and we expect that analysts will always be involved in a decision about whether some changes are "important" or not. However, as we expand from 10<sup>4</sup> to 10<sup>7</sup> webpages, we need to drastically reduce the number of pages that analysts look at. 
+
+Some examples of **meaningless** changes: 
+- it''s not unusual for a page to have a view counter on the bottom. In this case, the page changes **by definition** every time you view it.
+- many sites have "content sliders" or news feeds that update periodically. This change may be "meaningful", in that it's interesteing to see what the new news is. But it's only interesting once, not (as is sometimes seen) 1000 or 10000 times.
+
+An example of a **meaningful** change: 
+- In February, we noticed a systematic replacement of the word "impact" with the word "effect" on one website.  This change is very interesting because while "impact" and "effect" have similar meanings, "impact" is a **stronger** word. So there is an effort being made to **weaken** the language on existing sites. Our question is in part: what tools would we need in order to have this change **flagged** by our tools and presented to the analyst as **potentially interesting**?
 
 ### Sample Data
 
