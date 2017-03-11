@@ -108,10 +108,10 @@ Review the Definition of Terms section above, which corresponds to these tables.
 Every table includes:
 
 * uuid: UUID4 unique indentifier
-* created_at: creation timestamp (internal detail of the database)
-* updated_at: last update timestamp (internal detail of the database)
+* created_at: internal detail of the database
+* updated_at: internal detail of the database
 
-in addition the fields individually list below.
+in addition to the table-specific fields listed below.
 
 #### Pages
 
