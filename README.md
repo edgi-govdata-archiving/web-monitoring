@@ -72,6 +72,10 @@ The project is current divided into three repositories handling complementary as
   A Python backend ingests new captured HTML, computes diffs (for now, by
   querying PageFreezer), performs prioritization/filtering, and populates
   databases for Rails app.
+* [**web-monitoring-differ**](https://github.com/edgi-govdata-archiving/web-monitoring-differ)
+  A stand-alone web application that provides an alternative approach to
+  computing diffs (using a text-based diff) presented behind a web API matching
+  PageFreezer's.
 
 ### Deployment Plan
 
