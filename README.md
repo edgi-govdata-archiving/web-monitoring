@@ -141,7 +141,9 @@ in addition to the table-specific fields listed below.
 * uuid_from: reference to the "before" Version
 * uuid_to: reference to the "after" Version
 * priority: a number between 0 and 1 where 1 is high priority
-* current_annotation: for convenience, a reduction of one or more submitted Annotations
+* current_annotation: a JSON blob production a materialized reduction of one or
+  more submitted Annotations, resolving conflicts in some way yet to be
+  determined
 
 ####  Diffs
 
