@@ -135,7 +135,19 @@ in addition to the table-specific fields listed below.
 * uri: path to stored (HTML) data; could be a filepath, S3 bucket, etc.
 * version_hash: sha256 hash of stored data
 * source_type: name of source (such as 'Internet Archive')
-* source_metadata: JSON blob of extra info particular to the source
+* source_metadata: JSON blob of extra info particular to the source.
+  This field is free-form, but we generally expect the following content for a
+  given `source_type`:
+  * `source_type: 'versionista'`
+    * `account`: The e-mail address for the Versionista account that tracked this version/page
+    * `site_id`: ID of the site in Versionista
+    * `page_id`: ID of the page in Versionista
+    * `version_id`: ID of the version in Versionista
+    * `page_url`: URL to the Versionista view showing all the versionis of this page
+    * `diff_with_previous_url`: URL to diff view in Versionista (comparing with previous version)
+    * `diff_with_first_url`: URL to diff view in Versionista (comparing with the first recorded version)
+    * `diff_length`: Size of the diff in characters
+    * `diff_hash`: Hash of the Versionista-generated diff (identified by `diff_with_previous_url`). This should usually be a SHA 256 hash.
 
 #### Changes
 
