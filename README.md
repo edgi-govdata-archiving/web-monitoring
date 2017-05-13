@@ -139,15 +139,17 @@ in addition to the table-specific fields listed below.
   This field is free-form, but we generally expect the following content for a
   given `source_type`:
   * `source_type: 'versionista'`
-    * `account`: The e-mail address for the Versionista account that tracked this version/page
+    * `account`: A string identifying which Versionista account the data came from. This will generally be `versionista1` or `versionista2`.
     * `site_id`: ID of the site in Versionista
     * `page_id`: ID of the page in Versionista
     * `version_id`: ID of the version in Versionista
-    * `page_url`: URL to the Versionista view showing all the versionis of this page
+    * `url`: The full URL to view this version in Versionista. You’ll need to be logged into the appropriate Versionista account to make use of it.
     * `diff_with_previous_url`: URL to diff view in Versionista (comparing with previous version)
+    * `diff_length`: Length (in characters) of the diff identified by the above `diff_with_previous_url`.
+    * `diff_hash`: SHA 256 hash of the above diff identified by `diff_with_previous_url`.
     * `diff_with_first_url`: URL to diff view in Versionista (comparing with the first recorded version)
-    * `diff_length`: Size of the diff in characters
-    * `diff_hash`: Hash of the Versionista-generated diff (identified by `diff_with_previous_url`). This should usually be a SHA 256 hash.
+    * `has_content`: Boolean indicating whether Versionista had raw content for this version. If this is true, the version’s `uri` should have a value (and vice-versa).
+    * `error_code`: If HTTP status code returned to Versionista when it originally scraped the page was a non-200 (OK) status, this property will be present. Its value is the status code of the response, e.g. `403`, `500`, etc.
 
 #### Changes
 
