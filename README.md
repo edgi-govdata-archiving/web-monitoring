@@ -63,9 +63,9 @@ For more detail, see the Schema section below.
 
 ### Architecture
 
-The project is current divided into three repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces:
+The project is currently divided into several repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces:
 * [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db)  
-  A Ruby on Rails app for serves diffs from a database and collects
+  A Ruby on Rails app that serves database data via a REST API, serves diffs, and collects
   human-entered annotations.
 * [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui)  
   Front-end code (in TypeScript) provides useful views of the diffs. It
@@ -74,6 +74,8 @@ The project is current divided into three repositories handling complementary as
   A Python backend ingests new captured HTML, computes diffs (for now, by
   querying PageFreezer), performs prioritization/filtering, and populates
   databases for Rails app.
+* [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper)
+  A set of Node.js scripts used to extract data from Versionista and load it into the the database. It also generates the CSV files that analysts currently use in Google Spreadsheets to review changes. This project runs on its own, but in the future may be managed by or merged into `web-monitoring-processing`.
 
 Additionally, there is [**web-monitoring-differ**](https://github.com/edgi-govdata-archiving/web-monitoring-differ)
 a stand-alone web application that provides an alternative approach to
