@@ -1,5 +1,24 @@
 # Web Monitoring
 
+---
+:information_source: **Welcome Mozilla Global Sprinters!** :wave: :tada: :confetti_ball:  
+Thank you for helping out with our project, please take a moment to read our [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md) and project-specific [Contributing Guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
+
+:globe_with_meridians: We will be sprinting in-person at the [Toronto Mozilla Offices](https://ti.to/Mozilla/global-sprint-toronto), but remote contributors are more than welcome! Most of our team is based in the [Eastern Time Zone (ET)](https://en.wikipedia.org/wiki/Eastern_Time_Zone) or [Pacific Time Zone (PT)](https://en.wikipedia.org/wiki/Pacific_Time_Zone).
+
+We are looking forward to working together! You can get started by:
+
+- :speech_balloon: Joining the [Archivers Slack](https://archivers-slack.herokuapp.com/) and join `#dev` and `#dev-webmonitoring`
+- :clipboard: Reviewing the [**web-monitoring**](https://github.com/edgi-govdata-archiving/web-monitoring) repo, in particular read about the [project architecture](https://github.com/edgi-govdata-archiving/web-monitoring#architecture)
+- :bookmark_tabs: Looking at our issue tracker, for the global sprint we are targeting `mozsprint` or `first-timer` issues:
+
+   | Repo | Issues |
+   |------|--------|
+   | [**web-monitoring**](https://github.com/edgi-govdata-archiving/web-monitoring) | [`mozsprint`](https://github.com/edgi-govdata-archiving/web-monitoring/issues?q=is%3Aissue+is%3Aopen+label%3Amozsprint), [`first-timer`](https://github.com/edgi-govdata-archiving/web-monitoring/issues?q=is%3Aissue+is%3Aopen+label%3Afirst-timer) |
+   | [**web-monitoring-processing**](https://github.com/edgi-govdata-archiving/web-monitoring-processing) | [`mozsprint`](https://github.com/edgi-govdata-archiving/web-monitoring-processing/issues?q=is%3Aissue+is%3Aopen+label%3Amozsprint), [`first-timer`](https://github.com/edgi-govdata-archiving/web-monitoring-processing/issues?q=is%3Aissue+is%3Aopen+label%3Afirst-timer) |
+
+---
+
 This repository is for EDGI [Web Monitoring Project](https://github.com/edgi-govdata-archiving/web-monitoring) documentation and project-wide issue management.
 
 EDGI is already monitoring tens of thousands of pages and will eventually be monitoring tens of millions (or even as many as ~1 billion). Currently there is a lot of manual labour that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
