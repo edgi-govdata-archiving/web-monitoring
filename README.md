@@ -26,7 +26,7 @@ EDGI is already monitoring tens of thousands of pages and will eventually be mon
 - [Project Goals](#project-goals)
 - [How to Help](#how-to-help)
 - [Project Overview](#project-overview)
-- [License & Copyright](#license-copyright)
+- [License & Copyright](#license--copyright)
 
 ## Project Goals
 
