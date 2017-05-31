@@ -23,6 +23,11 @@ This repository is for EDGI [Web Monitoring Project](https://github.com/edgi-gov
 
 EDGI is already monitoring tens of thousands of pages and will eventually be monitoring tens of millions (or even as many as ~1 billion). Currently there is a lot of manual labour that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
 
+- [Project Goals](#project-goals)
+- [How to Help](#how-to-help)
+- [Project Overview](#project-overview)
+- [License & Copyright](#license-copyright)
+
 ## Project Goals
 
 The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system aims to make these changes easy to track, review, and report on.
@@ -199,3 +204,10 @@ in addition to the table-specific fields listed below.
 app.)
 
 For more details see the [Python implementation](https://github.com/edgi-govdata-archiving/web-monitoring-processing/blob/master/web_monitoring/db.py) and the [Ruby implementation (currently in progress)](https://github.com/edgi-govdata-archiving/web-monitoring-db/pull/15).
+
+## License & Copyright
+
+Copyright (C) 2017 Environmental Data and Governance Initiative (EDGI)
+Web Monitoring documentation is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+
+See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
