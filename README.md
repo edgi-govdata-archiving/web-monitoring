@@ -15,7 +15,7 @@ EDGI is already monitoring tens of thousands of pages and will eventually be mon
 The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system aims to make these changes easy to track, review, and report on.
 
 For more, see [the Version Tracking page on the EDGI website](https://envirodatagov.org/version-tracking/) and watch this
-[50-minute Analyst training video](https://www.dropbox.com/s/ciixvu612ktf4nt/new_tracking_training.mp4?dl=0).
+[50-minute Analyst training video](https://www.youtube.com/watch?v=iFz9xhD41G8).
 
 ## How to Help
 
