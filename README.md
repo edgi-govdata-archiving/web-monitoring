@@ -19,14 +19,17 @@ For more, see [the Version Tracking page on the EDGI website](https://envirodata
 
 ## How to Help
 
-Start by reading the Project Overview below and thinking about which aspects of
-the projects spark your interest.
+The best way to get involved is to take a run through [our onboarding
+process][onboarding], for which we rely on Trello. It's designed to be self-directed,
+so you can run through it at your own pace. But don't worry -- along the
+way, it will introduce you to the humans of EDGI's Web Monitoring
+project! Yay humans!
+
+[![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
 
 We expect to deploy a minimal operational version of this application by the
 end of March. Starting from that baseline, we will post many feature requests,
 bug reports, and documentation needs.
-
-See also the [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
 
 ## Project Overview
 
@@ -187,6 +190,15 @@ app.)
 
 For more details see the [Python implementation](https://github.com/edgi-govdata-archiving/web-monitoring-processing/blob/master/web_monitoring/db.py) and the [Ruby implementation (currently in progress)](https://github.com/edgi-govdata-archiving/web-monitoring-db/pull/15).
 
+## Contributing
+
+Don't forget check out the "How To Help" section above.
+
+See our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
+
 ## License & Copyright
 
 Copyright (C) 2017 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
+
+<!-- Links -->
+    [onboarding]: https://trello.com/b/FCGGEaQq/edgi-web-monitoring-project-onboarding
