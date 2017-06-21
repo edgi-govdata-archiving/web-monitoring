@@ -200,5 +200,4 @@ See our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-m
 
 Copyright (C) 2017 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
 
-<!-- Links -->
-    [onboarding]: https://trello.com/b/FCGGEaQq/edgi-web-monitoring-project-onboarding
+   [onboarding]: https://trello.com/b/FCGGEaQq/edgi-web-monitoring-project-onboarding
