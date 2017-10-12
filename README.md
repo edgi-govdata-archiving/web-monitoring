@@ -27,10 +27,6 @@ project! Yay humans!
 
 [![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
 
-We expect to deploy a minimal operational version of this application by the
-end of March. Starting from that baseline, we will post many feature requests,
-bug reports, and documentation needs.
-
 ## Project Overview
 
 ### Use Case
