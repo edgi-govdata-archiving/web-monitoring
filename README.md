@@ -10,6 +10,8 @@ EDGI is already monitoring tens of thousands of pages and will eventually be mon
 - [Project Overview](#project-overview)
 - [License & Copyright](#license--copyright)
 
+You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones) within the GitHub issue queue.
+
 ## Project Goals
 
 The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system aims to make these changes easy to track, review, and report on.
