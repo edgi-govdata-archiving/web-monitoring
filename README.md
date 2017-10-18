@@ -70,18 +70,18 @@ For more detail, see the Schema section below.
 
 ### Architecture
 
-The project is currently divided into several repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces:
-* [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db)  
+The project is currently divided into several repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces. For additional information, you can contact the active maintainers listed alongside each repo or our Project Manager, @rayc:
+* [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db) (@Mr0grog)
   A Ruby on Rails app that serves database data via a REST API, serves diffs, and collects
   human-entered annotations.
-* [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui)  
-  Front-end code (in TypeScript) provides useful views of the diffs. It
+* [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui) (@lightandluck)
+  React front-end that provides useful views of the diffs. It
   communicates with the Rails app via JSON.
-* [**web-monitoring-processing**](https://github.com/edgi-govdata-archiving/web-monitoring-processing)  
+* [**web-monitoring-processing**](https://github.com/edgi-govdata-archiving/web-monitoring-processing) (@Mr0grog)
   A Python backend ingests new captured HTML, computes diffs (for now, by
   querying PageFreezer), performs prioritization/filtering, and populates
   databases for Rails app.
-* [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper)
+* [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) (@Mr0grog)
   A set of Node.js scripts used to extract data from Versionista and load it into the the database. It also generates the CSV files that analysts currently use in Google Spreadsheets to review changes. This project runs on its own, but in the future may be managed by or merged into `web-monitoring-processing`.
 
 Additionally, there is [**web-monitoring-differ**](https://github.com/edgi-govdata-archiving/web-monitoring-differ)
