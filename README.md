@@ -84,11 +84,6 @@ The project is currently divided into several repositories handling complementar
 * [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) ([@Mr0grog](https://github.com/Mr0grog))
   A set of Node.js scripts used to extract data from Versionista and load it into the the database. It also generates the CSV files that analysts currently use in Google Spreadsheets to review changes. This project runs on its own, but in the future may be managed by or merged into `web-monitoring-processing`.
 
-Additionally, there is [**web-monitoring-differ**](https://github.com/edgi-govdata-archiving/web-monitoring-differ)
-a stand-alone web application that provides an alternative approach to
-computing diffs (using a text-based diff) presented behind a web API matching
-PageFreezer's.
-
 ### Deployment Plan
 
 The software will be deployed on Google Cloud, with each component running in a
