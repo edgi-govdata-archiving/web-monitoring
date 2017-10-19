@@ -29,6 +29,8 @@ project! Yay humans!
 
 [![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
 
+Also, [sign up](https://archivers-slack.herokuapp.com/) and join us on Slack! Active discussion is happening in the #webmonitoring channel with various offshoot topics happening on channels prefixed with #webmonitoring.
+
 ## Project Overview
 
 ### Use Case
