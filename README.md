@@ -29,6 +29,8 @@ project! Yay humans!
 
 [![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
 
+Also, [sign up](https://archivers-slack.herokuapp.com/) and join us on Slack! Active discussion is happening in the #webmonitoring channel with various offshoot topics happening on channels prefixed with #webmonitoring.
+
 ## Project Overview
 
 ### Use Case
@@ -70,24 +72,19 @@ For more detail, see the Schema section below.
 
 ### Architecture
 
-The project is currently divided into several repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces:
-* [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db)  
+The project is currently divided into several repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces. For additional information, you can contact the active maintainers listed alongside each repo or our Project Manager, [@weatherpattern](https://github.com/weatherpattern):
+* [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db) ([@Mr0grog](https://github.com/Mr0grog))
   A Ruby on Rails app that serves database data via a REST API, serves diffs, and collects
   human-entered annotations.
-* [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui)  
-  Front-end code (in TypeScript) provides useful views of the diffs. It
+* [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui) ([@lightandluck](https://github.com/lightandluck))
+  React front-end that provides useful views of the diffs. It
   communicates with the Rails app via JSON.
-* [**web-monitoring-processing**](https://github.com/edgi-govdata-archiving/web-monitoring-processing)  
+* [**web-monitoring-processing**](https://github.com/edgi-govdata-archiving/web-monitoring-processing) ([@danielballan](https://github.com/danielballan))
   A Python backend ingests new captured HTML, computes diffs (for now, by
   querying PageFreezer), performs prioritization/filtering, and populates
   databases for Rails app.
-* [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper)
+* [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) ([@Mr0grog](https://github.com/Mr0grog))
   A set of Node.js scripts used to extract data from Versionista and load it into the the database. It also generates the CSV files that analysts currently use in Google Spreadsheets to review changes. This project runs on its own, but in the future may be managed by or merged into `web-monitoring-processing`.
-
-Additionally, there is [**web-monitoring-differ**](https://github.com/edgi-govdata-archiving/web-monitoring-differ)
-a stand-alone web application that provides an alternative approach to
-computing diffs (using a text-based diff) presented behind a web API matching
-PageFreezer's.
 
 ### Deployment Plan
 
@@ -193,6 +190,31 @@ For more details see the [Python implementation](https://github.com/edgi-govdata
 Don't forget check out the "How To Help" section above.
 
 See our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
+
+This project wouldn’t exist without a lot of amazing people’s help. Thanks to the following for their work reviewing URL's, monitoring changes, writing [reports](https://envirodatagov.org/website-monitoring/), and a slew of so many other things!
+
+<!-- ALL-CONTRIBUTORS-LIST:START -->
+| Contributions | Name |
+| ----: | :---- |
+| [🔢](# "Content") | Marcy Beck |
+| [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Andrew Bergman |
+| [🔢](# "Content") | Morgan Currie |
+| [🔢](# "Content") | Justin Derry |
+| [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Gretchen Gehrke |
+| [🔢](# "Content") | Sara Johns |
+| [🔢](# "Content") | Katherine Kulik|
+| [🔢](# "Content") | Aaron Lamelin |
+| [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Rebecca Lave |
+| [🔢](# "Content") | Eric Nost |
+| [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Toly Rinberg|
+| [🔢](# "Content") | Justin Schell |
+| [🔢](# "Content") | Julia Upfal |
+| [🔢](# "Content") | Tyler Wedrosky |
+| [🔢](# "Content") | Jacob Wylie |
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+(For a key to the contribution emoji or more info on this format, check out [“All Contributors.”](https://github.com/kentcdodds/all-contributors))
 
 ## License & Copyright
 
