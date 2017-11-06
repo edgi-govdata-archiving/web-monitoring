@@ -196,20 +196,31 @@ This project wouldn’t exist without a lot of amazing people’s help. Thanks t
 <!-- ALL-CONTRIBUTORS-LIST:START -->
 | Contributions | Name |
 | ----: | :---- |
+| [🔢](# "Content") | Chris Amoss |
+| [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Maya Anjur-Dietrich |
 | [🔢](# "Content") | Marcy Beck |
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Andrew Bergman |
+| [🔢](# "Content") | Madelaine Britt |
+| [🔢](# "Content") | Ed Byrne |
 | [🔢](# "Content") | Morgan Currie |
 | [🔢](# "Content") | Justin Derry |
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Gretchen Gehrke |
+| [🔢](# "Content") | Jon Gobeil |
+| [🔢](# "Content") | Pamela Jao |
 | [🔢](# "Content") | Sara Johns |
+| [🔢](# "Content") | Abby Klionski |
 | [🔢](# "Content") | Katherine Kulik|
 | [🔢](# "Content") | Aaron Lamelin |
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Rebecca Lave |
 | [🔢](# "Content") | Eric Nost |
+| [🔢](# "Content") | Lindsay Poirier |
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Toly Rinberg|
 | [🔢](# "Content") | Justin Schell |
+| [🔢](# "Content") | Lauren Scott |
+| [🔢](# "Content") | Miranda Sinnott-Armstrong |
 | [🔢](# "Content") | Julia Upfal |
 | [🔢](# "Content") | Tyler Wedrosky |
+| [🔢](# "Content") | Adam Wizon |
 | [🔢](# "Content") | Jacob Wylie |
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
