@@ -12,7 +12,7 @@ The following are recommend code styling and best practices for all the Web Moni
 
 ### Naming:
 
-*No abbreviations.* Abbreviations tend to overlap a lot between domains, so they can be very ambiguous and confusing. This is especially true for non-native English speakers, even if they are fluent. Exceptions for things that are primarily referred to by abbreviation _in common language_, e.g. “URL,” “FAQ,” “ID,” _not_ “utils,” “idx,” etc. Single-letter names are ok only in contexts where their value is totally arbitrary, e.g. `function compare (a, b)`, or in the rare places where their use is normal, e.g. “x/y/z” in math functions referring to points.
+*No abbreviations.* Abbreviations tend to overlap a lot between domains, so they can be very ambiguous and confusing. This is especially true for non-native English speakers, even if they are fluent. Exceptions for things that are primarily referred to by abbreviation _in common language_, e.g. “URL,” “FAQ,” “ID,” _not_ “utils,” “idx,” etc. Single-letter names are ok only in contexts where their value is totally arbitrary, e.g. `function compare (a, b)`, or in the rare places where their use is normal, e.g. `x/y/z` in math functions referring to points.
 
 *If camel-casing, treat acronyms as a single word.* e.g. `parseHtml()`, not `parseHTML()`. This goes with the above—word boundaries can get easily confused when two acronyms run up against each other.
 
@@ -23,6 +23,7 @@ Keep it simple, just alphabetize at the top of the file.
 ### Spacing in code:
 
 Overall, we recommend [Stroustrup](https://en.wikipedia.org/wiki/Indentation_style#Variant:_Stroustrup) spacing.
+
 ```js
 if (foo) {
   bar();
@@ -64,4 +65,4 @@ Before starting to work on an issue, check for assigness. If no one is assignd t
 
 ### Upgrading 3rd party dependencies:
 
-	Keeping up to date with latest version of external packages, libraries, frameworks, etc is highly recommended. When a new release occurs, check to see if an issue to upgrade has been written. If it hasn’t, create an issue to begin a discussion on the best upgrade path.
+Keeping up to date with latest version of external packages, libraries, frameworks, etc is highly recommended. When a new release occurs, check to see if an issue to upgrade has been written. If it hasn’t, create an issue to begin a discussion on the best upgrade path.
