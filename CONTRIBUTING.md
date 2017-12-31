@@ -6,9 +6,9 @@ We love improvements to our tools! EDGI has general [guidelines for contributing
 
 Issues that are project-wide, or relate heavily to the interaction between different components, should be added to our [Web Monitoring issue queue](https://github.com/edgi-govdata-archiving/web-monitoring/issues). Component-specific issues should be added to their respective repository.
 
-The following are recommend code styling and best practices for all the Web Monitoring repositories. We also have some best practices specifically for our [web-monitoring-ui](https://github.com/edgi-govdata-archiving/web-monitoring-ui/blob/master/CONTRIBUTING.md) repo.
-
 ## Code Style / Best Practices:
+
+The following are recommend code styling and best practices for all the Web Monitoring repositories. We also have some best practices specifically for our [web-monitoring-ui](https://github.com/edgi-govdata-archiving/web-monitoring-ui/blob/master/CONTRIBUTING.md) repo.
 
 ### Naming:
 
@@ -17,17 +17,20 @@ The following are recommend code styling and best practices for all the Web Moni
 *If camel-casing, treat acronyms as a single word.* e.g. `parseHtml()`, not `parseHTML()`. This goes with the above—word boundaries can get easily confused when two acronyms run up against each other.
 
 ### Alphabetize imports at the start of files:
+
 Keep it simple, just alphabetize at the top of the file.
 
 ### Spacing in code:
 
 Overall, we recommend [Stroustrup](https://en.wikipedia.org/wiki/Indentation_style#Variant:_Stroustrup) spacing.
-'''if (foo) {
+```js
+if (foo) {
   bar();
 }
 else {
   baz();
-}'''
+}
+```
 
 ### Commenting:
 
@@ -41,19 +44,24 @@ else {
 - **NOTE**: Be careful, there be dragons here. This code is delicate (or maybe hot), so this comment should denote things anyone touching the code must be aware of.
 
 ## Testing:
+
 Behavior Driven Development is a good starting point. Writing tests in a whole other language is not necessary. We recommend the practice of having full-sentence test names, e.g. `it('should do something I care about', /* Test */);` and further breaking them into blocks with `describe('some behavior or component')`.
 
 ### Testing: it() or test():
+
 We recommend it()
 
 ### Pull Requests with tests:
+
 For Processing and DB repos, all pull requests require some test coverage.
 For UI, it is not currently required. Note, we want to begin requiring it in the future, after the codebase has been factored to make testing a more realistic requirement.
 
 ## Process:
 
 ### Pull Request assignment:
+
 Before starting to work on an issue, check for assigness. If no one is assignd to it, assign it to yourself. For new contributions, add a comment that you are working on it. If someone is assigned to it, but you don't see any activity on the issue, make a friendly inquire to see if it is actively being work on. 
 
 ### Upgrading 3rd party dependencies:
+
 	Keeping up to date with latest version of external packages, libraries, frameworks, etc is highly recommended. When a new release occurs, check to see if an issue to upgrade has been written. If it hasn’t, create an issue to begin a discussion on the best upgrade path.
