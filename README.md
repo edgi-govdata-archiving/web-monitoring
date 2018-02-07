@@ -234,6 +234,10 @@ Finally, we want to give a huge thanks to partner organizations that have helped
 
 - [Amazon Web Services](https://aws.amazon.com/)
 - [Sentry.io](https://sentry.io)
+- [PageFreezer](https://www.pagefreezer.com)
+- [Google Cloud Platform](https://cloud.google.com)
+- [Google Summer of Code](https://summerofcode.withgoogle.com)
+- [DataKind](http://www.datakind.org/)
 
 
 ## License & Copyright
