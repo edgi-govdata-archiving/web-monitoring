@@ -137,7 +137,7 @@ in addition to the table-specific fields listed below.
 
 * page_uuid: reference to a Page
 * capture_time: when this snapshot of the Page was acquired
-* Uri: path to stored (HTML) data; could be a file path, S3 bucket, etc.
+* uri: path to stored (HTML) data; could be a file path, S3 bucket, etc.
 * version_hash: sha256 hash of stored data
 * source_type: name of source (such as 'Internet Archive')
 * source_metadata: JSON blob of extra info particular to the source.
