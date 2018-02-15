@@ -212,6 +212,7 @@ This project wouldn’t exist without a lot of amazing people’s help. Thanks t
 | [🔢](# "Content") | Aaron Lamelin |
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Rebecca Lave |
 | [🔢](# "Content") | Eric Nost |
+| [📖](# "Documentation") | Karna Patel |
 | [🔢](# "Content") | Lindsay Poirier |
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Toly Rinberg|
 | [🔢](# "Content") | Justin Schell |
@@ -221,7 +222,6 @@ This project wouldn’t exist without a lot of amazing people’s help. Thanks t
 | [🔢](# "Content") | Tyler Wedrosky |
 | [🔢](# "Content") | Adam Wizon |
 | [🔢](# "Content") | Jacob Wylie |
-| [🔢](# "Content") | Karna Patel |
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
