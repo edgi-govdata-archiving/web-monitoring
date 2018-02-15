@@ -105,8 +105,8 @@ An example of a **meaningful** change:
 
 [`example-data`](./example-data) contains examples of website changes:
 
-- `false pos-...` files are cases any filter should catch
-- `true pos...` files are cases of changes we care about
+- `falsepos-...` files are cases any filter should catch
+- `truepos...` files are cases of changes we care about
 
 This is a small but illustrative sample. Many more samples will be made
 available as soon as possible.
@@ -114,7 +114,7 @@ available as soon as possible.
 ### Schema
 
 This describes the schema of the SQL databases shared by the Rails app in
-web-monitoring-DB and the Python processing backend in web-monitoring-processing.
+[**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db) and the Python processing backend in web-monitoring-processing.
 Review the Definition of Terms section above, which corresponds to these tables.
 
 Every table includes:
@@ -153,7 +153,7 @@ in addition to the table-specific fields listed below.
     * `diff_length`: Length (in characters) of the diff identified by the above `diff_with_previous_url`.
     * `diff_hash`: SHA 256 hash of the above diff identified by `diff_with_previous_url`.
     * `diff_with_first_url`: URL to diff view in Versionista (comparing with the first recorded version)
-    * `has_content`: Boolean indicating whether Versionista had raw content for this version. If this is true, the version’s `Uri` should have a value (and vice-versa).
+    * `has_content`: Boolean indicating whether Versionista had raw content for this version. If this is true, the version’s `uri` should have a value (and vice-versa).
     * `error_code`: If HTTP status code returned to Versionista when it originally scraped the page was a non-200 (OK) status, this property will be present. Its value is the status code of the response, e.g. `403`, `500`, etc.
 
 #### Changes
@@ -221,6 +221,7 @@ This project wouldn’t exist without a lot of amazing people’s help. Thanks t
 | [🔢](# "Content") | Tyler Wedrosky |
 | [🔢](# "Content") | Adam Wizon |
 | [🔢](# "Content") | Jacob Wylie |
+| [🔢](# "Content") | Karna Patel |
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
