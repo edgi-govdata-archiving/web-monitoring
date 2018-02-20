@@ -217,7 +217,7 @@ This project wouldn’t exist without a lot of amazing people’s help. Thanks t
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Toly Rinberg|
 | [🔢](# "Content") | Justin Schell |
 | [🔢](# "Content") | Lauren Scott |
-| [🤔](# "Ideas and Planning") | Nick Shapiro |
+| [🤔](# "Ideas and Planning") [🔍](# "Funding/Grant Finders")| Nick Shapiro |
 | [🔢](# "Content") | Miranda Sinnott-Armstrong |
 | [🔢](# "Content") | Julia Upfal |
 | [🔢](# "Content") | Tyler Wedrosky |
