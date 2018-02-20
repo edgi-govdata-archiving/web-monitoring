@@ -29,7 +29,14 @@ project! Yay humans!
 
 [![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
 
-Also, [sign up](https://archivers-slack.herokuapp.com/) and join us on Slack! Active discussion is happening in the #webmonitoring channel with various offshoot topics happening on channels prefixed with #webmonitoring.
+### Where we work
+
+* Say hi on our chat!
+   * [Create](https://archivers-slack.herokuapp.com/) an account on Slack team.
+   * Join us in the `#webmonitoring` channel.
+* Attend a software development call.
+   * [Create](https://zoom.us/signup) a Zoom account.
+   * [Join](https://edgi-video-call-landing-page.herokuapp.com/https://zoom.us/j/187414228) our call, every Wednesday at 2pm ET.
 
 ## Project Overview
 
