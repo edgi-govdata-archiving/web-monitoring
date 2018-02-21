@@ -35,8 +35,8 @@ project! Yay humans!
    * [Create](https://archivers-slack.herokuapp.com/) an account on Slack team.
    * Join us in the `#webmonitoring` channel.
 * Attend a software development call.
-   * [Create](https://zoom.us/signup) a Zoom account.
    * [Join](https://edgi-video-call-landing-page.herokuapp.com/https://zoom.us/j/187414228) our call, every Wednesday at 2pm ET.
+   * Zoom Meeting account is optional. See above link for details.
 
 ## Project Overview
 
