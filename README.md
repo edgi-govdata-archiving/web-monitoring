@@ -37,6 +37,7 @@ project! Yay humans!
 * Attend a software development call.
    * [Join](https://edgi-video-call-landing-page.herokuapp.com/https://zoom.us/j/187414228) our call, every Wednesday at 2pm ET.
    * Zoom Meeting account is optional. See above link for details.
+   * We keep [notes](https://drive.google.com/drive/u/0/folders/0BxkWFSoyVYI3YVZXY1JxVllFVkU) for all meetings.
 
 ## Project Overview
 
