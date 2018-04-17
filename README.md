@@ -1,7 +1,7 @@
 # Web Monitoring
 
 
-This repository is for EDGI [Web Monitoring Project](https://github.com/edgi-govdata-archiving/web-monitoring) documentation and project-wide issue management.
+This repository is for EDGI [Web Monitoring Project](https://envirodatagov.org/website-monitoring/) documentation and project-wide issue management.
 
 EDGI is already monitoring tens of thousands of pages and will eventually be monitoring tens of millions (or even as many as ~1 billion). Currently, there is a lot of manual labor that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
 
@@ -10,7 +10,7 @@ EDGI is already monitoring tens of thousands of pages and will eventually be mon
 - [Project Overview](#project-overview)
 - [License & Copyright](#license--copyright)
 
-You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones) within the GitHub issue queue.
+You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones?direction=asc&sort=due_date&state=open) within the GitHub issue queue.
 
 ## Project Goals
 
