@@ -195,6 +195,8 @@ For more details see the [Python implementation](https://github.com/edgi-govdata
 
 Don't forget to check out the "How To Help" section above.
 
+[Code of Conduct](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONDUCT.md)
+
 See our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
 
 This project wouldn’t exist without a lot of amazing people’s help. Thanks to the following for their work reviewing URL's, monitoring changes, writing [reports](https://envirodatagov.org/website-monitoring/), and a slew of so many other things!
