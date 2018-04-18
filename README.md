@@ -14,39 +14,39 @@ You can **track upcoming releases** by exploring our [milestones](https://github
 
 ## :hammer: Technologies Used
 
-* [**Heroku.**][heroku] A platform for easily deploying applications.
-* [**Review Apps.**][review-apps] A Heroku feature that deploys code
-  from GitHub pull requests as a disposable app on the web.
+* **HTML & CSS.**
+* **SASS.**
+* [**Ruby on Rails.**][rails] A web application development framework used by our backend API server.
 * **Javascript.** Notable packages include:
   * [**Webpack.**][webpack] A _static module bundler_ for modern JavaScript
     applications.
   * [**ReactJS.**][reactjs] A JavaScript library for building user
     interfaces.
-* [**Redis.**][redis] An open source, in-memory data structure store,
-  used as a database, cache and message broker.
-* **HTML & CSS.**
-* **SASS.**
 * **Python.** Notable packages include:
   * [**Beautiful Soup.**][beautifulsoup] A library for pulling data out
     of HTML and XML files.
   * [**Tornado.**][tornado] A web server and application framework.
-* [**Sentry.**][sentry] A hosted error-tracking service, that happens to
-  be open source.
-* [**Ruby on Rails.**][rails] A web application development framework used by our
-  backend API server.
-* [**Swagger.**][swagger] A spec and framework for API developer tools.
-* [**Docker.**][docker] Runs "containers images" to help make running
-  software simpler for developers.
 * [**Postgresql.**][postgres] A powerful, open source
   object-relational database system.
-* [**Amazon Web Services. (AWS)**][aws] A hosted cloud services platform
-  for servers, databases, file storage, etc.
+* [**Redis.**][redis] An open source, in-memory data structure store,
+  used as a database, cache and message broker.
+* [**Swagger.**][swagger] A spec and framework for API developer tools.
+
+* [**Heroku.**][heroku] A platform for easily deploying applications.
+* [**Review Apps.**][review-apps] A Heroku feature that deploys code
+  from GitHub pull requests as a disposable app on the web.
 * [**Ansible.**][ansible] An open source automation platform for
   software configuration.
+* [**Docker.**][docker] Runs "containers images" to help make running
+  software simpler for developers.
 * [**Versionista.**][versionista] Enterprise tool for webpage change
   detection and alerts.
 * [**Internet Archive.**][ia] A nonprofit-led digital library of
   Internet website history going back 20+ years.
+* [**Amazon Web Services. (AWS)**][aws] A hosted cloud services platform
+  for servers, databases, file storage, etc.
+* [**Sentry.**][sentry] A hosted error-tracking service, that happens to
+  be open source.
 
    [heroku]: https://www.heroku.com/what
    [review-apps]: https://devcenter.heroku.com/articles/github-integration-review-apps
