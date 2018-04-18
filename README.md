@@ -15,6 +15,13 @@ You can **track upcoming releases** by exploring our [milestones](https://github
 
 ## :hammer: Technologies Used
 
+To help newcomers better understand where they might be able to
+contribute, these are the main tool and software that we use in this
+project. This includes software in the application, but also
+platforms that we rely on.
+
+And don't worry -- you definitely don't need to know all of them!
+
 * **HTML & CSS.**
 * **SASS.**
 * [**Ruby on Rails.**][rails] A web application development framework used by our backend API server.
