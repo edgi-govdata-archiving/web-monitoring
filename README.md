@@ -19,14 +19,14 @@ You can **track upcoming releases** by exploring our [milestones](https://github
 * **SASS.**
 * [**Ruby on Rails.**][rails] A web application development framework used by our backend API server.
 * **Javascript.** Notable packages include:
-  * [**Webpack.**][webpack] A _static module bundler_ for modern JavaScript
-    applications.
-  * [**ReactJS.**][reactjs] A JavaScript library for building user
-    interfaces.
+    * [**Webpack.**][webpack] A _static module bundler_ for modern JavaScript
+      applications.
+    * [**ReactJS.**][reactjs] A JavaScript library for building user
+      interfaces.
 * **Python.** Notable packages include:
-  * [**Beautiful Soup.**][beautifulsoup] A library for pulling data out
-    of HTML and XML files.
-  * [**Tornado.**][tornado] A web server and application framework.
+    * [**Beautiful Soup.**][beautifulsoup] A library for pulling data out
+      of HTML and XML files.
+    * [**Tornado.**][tornado] A web server and application framework.
 * [**Postgresql.**][postgres] A powerful, open source
   object-relational database system.
 * [**Redis.**][redis] An open source, in-memory data structure store,
