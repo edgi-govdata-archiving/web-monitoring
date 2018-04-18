@@ -27,8 +27,9 @@ You can **track upcoming releases** by exploring our [milestones](https://github
 * **HTML & CSS.**
 * **SASS.**
 * **Python.** Notable packages include:
-  * **`beautifulsoup`.**
-  * **`tornado`.**
+  * [**Beautiful Soup.**][beautifulsoup] A library for pulling data out
+    of HTML and XML files.
+  * [**Tornado.**][tornado] A web server and application framework.
 * [**Sentry.**][sentry] A hosted error-tracking service, that happens to
   be open source.
 * [**Ruby on Rails.**][rails] A web application development framework used by our
@@ -61,6 +62,8 @@ You can **track upcoming releases** by exploring our [milestones](https://github
    [versionista]: https://versionista.com/about
    [ia]: https://archive.org/about/
    [webpack]: https://webpack.js.org/concepts/
+   [tornado]: http://www.tornadoweb.org/en/stable/
+   [beautifulsoup]: https://medium.freecodecamp.org/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe
 
 ## Project Goals
 
