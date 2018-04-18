@@ -12,6 +12,23 @@ EDGI is already monitoring tens of thousands of pages and will eventually be mon
 
 You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones) within the GitHub issue queue.
 
+## :hammer: Technology Used
+
+* [**Heroku.**][heroku] A platform for easily deploying applications.
+* [**Review Apps.**][review-apps] A Heroku feature that deploys code
+  from GitHub pull requests as a disposable app on the web.
+* Javascript. For front-end UI.
+* HTML & CSS.
+* Python.
+* Ruby on Rails. For backend database server.
+* [Swagger][swagger]. A spec and framework for API developer tools.
+* [Docker.][docker]
+
+   [heroku]: https://www.heroku.com/what
+   [review-apps]: https://devcenter.heroku.com/articles/github-integration-review-apps
+   [swagger]: https://swagger.io/
+   [docker]: 
+
 ## Project Goals
 
 The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system aims to make these changes easy to track, review, and report on.
@@ -253,3 +270,4 @@ Finally, we want to give a huge thanks to partner organizations that have helped
 Copyright (C) 2017 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
 
    [onboarding]: https://trello.com/b/FCGGEaQq/edgi-web-monitoring-project-onboarding
+
