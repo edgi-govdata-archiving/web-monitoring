@@ -1,16 +1,35 @@
-# Web Monitoring
+# EDGI: Web Monitoring Project
 
+[**Environmental Data & Governance Initiative**][edgi] (EDGI) is an
+international network of academics and non-profits addressing potential
+threats to federal environmental and energy policy, and to the
+scientific research infrastructure built to investigate, inform, and
+enforce them.
 
-This repository is for EDGI [Web Monitoring Project](https://github.com/edgi-govdata-archiving/web-monitoring) documentation and project-wide issue management.
+[**Website Monitoring**][webmon] is an EDGI project aspiring to build
+tools and community around monitoring changes to government websites,
+both environment-related and otherwise.
 
-EDGI is already monitoring tens of thousands of pages and will eventually be monitoring tens of millions (or even as many as ~1 billion). Currently, there is a lot of manual labor that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
+   [edgi]: https://envirodatagov.org/
+   [webmon]: https://envirodatagov.org/website-monitoring/ 
+
+This [repository][repo] is for project-wide documentation and [issues-tracking][issues].
+
+   [repo]: https://github.com/edgi-govdata-archiving/web-monitoring
+   [issues]: https://github.com/edgi-govdata-archiving/web-monitoring/issues
+
+This project and its associated efforts are already monitoring tens of thousands of government web pages.
+But we aspire for larger impact, eventually monitoring tens of millions or more.
+Currently, there is a lot of manual labor that goes into reviewing all changes,
+regardless of whether they are meaningful or not.
+Any system will need to emphasize usability of the UI and efficiency of computational resources.
 
 - [Project Goals](#project-goals)
 - [How to Help](#how-to-help)
 - [Project Overview](#project-overview)
 - [License & Copyright](#license--copyright)
 
-You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones) within the GitHub issue queue.
+You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones).
 
 ## Project Goals
 
