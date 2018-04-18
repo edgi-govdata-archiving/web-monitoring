@@ -5,6 +5,7 @@ This repository is for EDGI [Web Monitoring Project](https://github.com/edgi-gov
 
 EDGI is already monitoring tens of thousands of pages and will eventually be monitoring tens of millions (or even as many as ~1 billion). Currently, there is a lot of manual labor that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
 
+- [Technologies Used](#hammer-technologies-used)
 - [Project Goals](#project-goals)
 - [How to Help](#how-to-help)
 - [Project Overview](#project-overview)
