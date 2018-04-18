@@ -32,7 +32,6 @@ You can **track upcoming releases** by exploring our [milestones](https://github
 * [**Redis.**][redis] An open source, in-memory data structure store,
   used as a database, cache and message broker.
 * [**Swagger.**][swagger] A spec and framework for API developer tools.
-
 * [**Heroku.**][heroku] A platform for easily deploying applications.
 * [**Review Apps.**][review-apps] A Heroku feature that deploys code
   from GitHub pull requests as a disposable app on the web.
