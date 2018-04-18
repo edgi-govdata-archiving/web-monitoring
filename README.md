@@ -17,17 +17,21 @@ You can **track upcoming releases** by exploring our [milestones](https://github
 * [**Heroku.**][heroku] A platform for easily deploying applications.
 * [**Review Apps.**][review-apps] A Heroku feature that deploys code
   from GitHub pull requests as a disposable app on the web.
-* Javascript. For front-end UI.
-* HTML & CSS.
-* Python.
-* Ruby on Rails. For backend database server.
-* [Swagger][swagger]. A spec and framework for API developer tools.
-* [Docker.][docker]
+* **Javascript.** For front-end UI.
+* **HTML & CSS.**
+* **Python.**
+* **Ruby on Rails.** For backend database server.
+* [**Swagger.**][swagger] A spec and framework for API developer tools.
+* [**Docker.**][docker] Runs "containers images" to help make running
+  software simpler for developers.
+* [**Postgresql.**][postgres] A powerful, open source
+  object-relational database system.
 
    [heroku]: https://www.heroku.com/what
    [review-apps]: https://devcenter.heroku.com/articles/github-integration-review-apps
    [swagger]: https://swagger.io/
-   [docker]: 
+   [docker]: https://www.docker.com/what-container
+   [postgres]: https://www.postgresql.org/about/
 
 ## Project Goals
 
