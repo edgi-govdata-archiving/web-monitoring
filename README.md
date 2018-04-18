@@ -18,7 +18,8 @@ You can **track upcoming releases** by exploring our [milestones](https://github
 * [**Review Apps.**][review-apps] A Heroku feature that deploys code
   from GitHub pull requests as a disposable app on the web.
 * **Javascript.** Notable packages include:
-  * **`webpack`.**
+  * [**Webpack.**][webpack] A _static module bundler_ for modern JavaScript
+    applications.
   * [**ReactJS.**][reactjs] A JavaScript library for building user
     interfaces.
 * [**Redis.**][redis] An open source, in-memory data structure store,
@@ -59,6 +60,7 @@ You can **track upcoming releases** by exploring our [milestones](https://github
    [ansible]: https://networklore.com/ansible/
    [versionista]: https://versionista.com/about
    [ia]: https://archive.org/about/
+   [webpack]: https://webpack.js.org/concepts/
 
 ## Project Goals
 
