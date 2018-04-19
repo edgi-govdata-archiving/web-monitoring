@@ -40,8 +40,6 @@ And don't worry -- you definitely don't need to know all of them!
   used as a database, cache and message broker.
 * [**Swagger.**][swagger] A spec and framework for API developer tools.
 * [**Heroku.**][heroku] A platform for easily deploying applications.
-* [**Review Apps.**][review-apps] A Heroku feature that deploys code
-  from GitHub pull requests as a disposable app on the web.
 * [**Ansible.**][ansible] An open source automation platform for
   software configuration.
 * [**Docker.**][docker] Runs "containers images" to help make running
@@ -56,7 +54,6 @@ And don't worry -- you definitely don't need to know all of them!
   be open source.
 
    [heroku]: https://www.heroku.com/what
-   [review-apps]: https://devcenter.heroku.com/articles/github-integration-review-apps
    [reactjs]: https://thinkster.io/tutorials/what-exactly-is-react
    [sentry]: https://sentry.io/about/
    [redis]: https://redis.io/topics/introduction
