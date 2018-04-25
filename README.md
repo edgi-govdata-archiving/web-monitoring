@@ -24,7 +24,7 @@ And don't worry -- you definitely don't need to know all of them!
 
 * **HTML & CSS.**
 * **SASS.**
-* [**Ruby on Rails.**][rails] A web application development framework used by our backend API server.
+* [**Ruby on Rails.**][rails] A web application development framework used [`web-monitoring-db`][web-monitoring-db].
 * **Javascript.** Notable packages include:
     * [**Webpack.**][webpack] A _static module bundler_ for modern JavaScript
       applications.
@@ -67,6 +67,7 @@ And don't worry -- you definitely don't need to know all of them!
    [ia]: https://archive.org/about/
    [webpack]: https://webpack.js.org/concepts/
    [tornado]: http://www.tornadoweb.org/en/stable/
+   [web-monitoring-db]: https://github.com/edgi-govdata-archiving/web-monitoring-db
    [beautifulsoup]: https://medium.freecodecamp.org/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe
 
 ## Project Goals
