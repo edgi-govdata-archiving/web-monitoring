@@ -24,7 +24,7 @@ And don't worry -- you definitely don't need to know all of them!
 
 * **HTML & CSS.**
 * **SASS.**
-* [**Ruby on Rails.**][rails] A web application development framework used [`web-monitoring-db`][web-monitoring-db].
+* [**Ruby on Rails.**][rails] A web application development framework used for API server.
 * **Javascript.** Notable packages include:
     * [**Webpack.**][webpack] A _static module bundler_ for modern JavaScript
       applications.
