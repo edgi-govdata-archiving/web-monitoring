@@ -5,12 +5,70 @@ This repository is for EDGI [Web Monitoring Project](https://github.com/edgi-gov
 
 EDGI is already monitoring tens of thousands of pages and will eventually be monitoring tens of millions (or even as many as ~1 billion). Currently, there is a lot of manual labor that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
 
+- [Technologies Used](#hammer-technologies-used)
 - [Project Goals](#project-goals)
 - [How to Help](#how-to-help)
 - [Project Overview](#project-overview)
 - [License & Copyright](#license--copyright)
 
 You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones) within the GitHub issue queue.
+
+## :hammer: Technologies Used
+
+To help newcomers better understand where they might be able to
+contribute, these are the main tools that we use and are having
+discussions around within this project. This includes software in
+the application, but also platforms that we rely on.
+
+And don't worry -- you definitely don't need to know all of them!
+
+* **HTML & CSS.**
+* **SASS.**
+* [**Ruby on Rails.**][rails] A web application development framework used for API server.
+* **Javascript.** Notable packages include:
+    * [**Webpack.**][webpack] A _static module bundler_ for modern JavaScript
+      applications.
+    * [**ReactJS.**][reactjs] A JavaScript library for building user
+      interfaces.
+* **Python.** Notable packages include:
+    * [**Beautiful Soup.**][beautifulsoup] A library for pulling data out
+      of HTML and XML files.
+    * [**Tornado.**][tornado] A web server and application framework.
+* [**Postgresql.**][postgres] A powerful, open source
+  object-relational database system.
+* [**Redis.**][redis] An open source, in-memory data structure store,
+  used as a database, cache and message broker.
+* [**Swagger.**][swagger] A spec and framework for API developer tools.
+* [**Heroku.**][heroku] A platform for easily deploying applications.
+* [**Ansible.**][ansible] An open source automation platform for
+  software configuration.
+* [**Docker.**][docker] Runs "containers images" to help make running
+  software simpler for developers.
+* [**Versionista.**][versionista] Enterprise tool for webpage change
+  detection and alerts.
+* [**Internet Archive.**][ia] A nonprofit-led digital library of
+  Internet website history going back 20+ years.
+* [**Amazon Web Services. (AWS)**][aws] A hosted cloud services platform
+  for servers, databases, file storage, etc.
+* [**Sentry.**][sentry] A hosted error-tracking service, that happens to
+  be open source.
+
+   [heroku]: https://www.heroku.com/what
+   [reactjs]: https://thinkster.io/tutorials/what-exactly-is-react
+   [sentry]: https://sentry.io/about/
+   [redis]: https://redis.io/topics/introduction
+   [rails]: http://guides.rubyonrails.org/getting_started.html
+   [swagger]: https://swagger.io/
+   [docker]: https://www.docker.com/what-container
+   [postgres]: https://www.postgresql.org/about/
+   [aws]: https://aws.amazon.com/what-is-aws/
+   [ansible]: https://networklore.com/ansible/
+   [versionista]: https://versionista.com/about
+   [ia]: https://archive.org/about/
+   [webpack]: https://webpack.js.org/concepts/
+   [tornado]: http://www.tornadoweb.org/en/stable/
+   [web-monitoring-db]: https://github.com/edgi-govdata-archiving/web-monitoring-db
+   [beautifulsoup]: https://medium.freecodecamp.org/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe
 
 ## Project Goals
 
@@ -253,3 +311,4 @@ Finally, we want to give a huge thanks to partner organizations that have helped
 Copyright (C) 2017 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
 
    [onboarding]: https://trello.com/b/FCGGEaQq/edgi-web-monitoring-project-onboarding
+
