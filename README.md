@@ -299,6 +299,8 @@ This project wouldn’t exist without a lot of amazing people’s help. Thanks t
 
 Finally, we want to give a huge thanks to partner organizations that have helped to support this project with their tools and services:
 
+- [The David and Lucile Packard Foundation](https://www.packard.org)
+- [Doris Duke Charitable Foundation](http://www.ddcf.org)
 - [Amazon Web Services](https://aws.amazon.com/)
 - [Sentry.io](https://sentry.io)
 - [PageFreezer](https://www.pagefreezer.com)
