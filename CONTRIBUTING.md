@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-We love improvements to our tools! EDGI has general [guidelines for contributing](https://github.com/edgi-govdata-archiving/overview/blob/master/CONTRIBUTING.md) to all of our organizational repos.
+We love improvements to our tools! EDGI has general [guidelines for contributing](https://github.com/edgi-govdata-archiving/overview/blob/master/CONTRIBUTING.md) and a [code of conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md) for all of our organizational repos.
 
 ## Submitting Web Monitoring Issues
 

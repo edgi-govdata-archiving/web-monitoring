@@ -250,6 +250,10 @@ app.)
 
 For more details see the [Python implementation](https://github.com/edgi-govdata-archiving/web-monitoring-processing/blob/master/web_monitoring/db.py) and the [Ruby implementation (currently in progress)](https://github.com/edgi-govdata-archiving/web-monitoring-db/pull/15).
 
+## Code of Conduct
+
+This repository falls under EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
+
 ## Contributing
 
 Don't forget to check out the "How To Help" section above.
