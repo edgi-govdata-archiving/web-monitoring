@@ -107,13 +107,15 @@ so you can run through it at your own pace. But don't worry -- along the
 way, it will introduce you to the humans of EDGI's Web Monitoring
 project! Yay humans!
 
+[![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
+
 We are currently revamping that process so check back soon for a link. In the meantime these developer onboarding videos, though long, will be useful.
 
 [Developer Orientation](https://www.youtube.com/watch?v=ig8rjII0wkU&index=88&list=PLtsP3g9LafVtj6IOMk05aOh-DdpuqWhue&t=0s)
 
 [Architecture Overview](https://youtu.be/HM3kv0XwJZc?t=42m11s)
 
-[![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
+
 
 ### Where we work
 
