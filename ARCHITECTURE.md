@@ -39,7 +39,8 @@ For more details about the models we use in Scanner see the web-monitoring-db's 
 <a id="2"></a>
 ## Deployment Plan
 
-The software will be deployed on Google Cloud, with each component running in a
-separate Docker container.
+- web-monitoring-db and web-monitoring-ui are services that run on Heroku.
+- web-monitoring-processing and web-monitoring-versionista-scraper are manually deployed to servers on AWS.
+- We plan to re-deploy these to AWS as a Kubernetes cluster, **but that doesn’t exist yet.**
 
 
