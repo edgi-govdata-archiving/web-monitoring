@@ -27,7 +27,7 @@ The project is currently divided into several repositories handling complementar
 * [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db) ([@Mr0grog](https://github.com/Mr0grog))
   A Ruby on Rails app that serves database data via a REST API, serves diffs, and collects human-entered annotations.
 * [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui) ([@lightandluck](https://github.com/lightandluck))
-  React front-end that provides useful views of the diffs. It
+  A React front-end that provides useful views of the diffs. It
   communicates with the Rails app via JSON.
 * [**web-monitoring-processing**](https://github.com/edgi-govdata-archiving/web-monitoring-processing) ([@danielballan](https://github.com/danielballan))
   A Python backend that pulls data from a source like the Internet Archive and computes diffs.
