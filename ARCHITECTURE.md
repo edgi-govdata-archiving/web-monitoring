@@ -34,7 +34,7 @@ The project is currently divided into several repositories handling complementar
 * [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) ([@Mr0grog](https://github.com/Mr0grog))
   A set of Node.js scripts used to extract data from Versionista and load it into the database. It also generates the CSV files that analysts currently use in Google Spreadsheets to review changes. This project runs on its own, but in the future may be managed by or merged into `web-monitoring-processing`.
 
-For more details about the models we use in Scanner see the web-monitoring-db's [API documentation](https://api.monitoring.envirodatagov.org/).
+For more details about the models we use in Scanner see web-monitoring-db's [API documentation](https://api.monitoring.envirodatagov.org/).
 
 <a id="2"></a>
 ## Deployment Plan
