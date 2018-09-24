@@ -115,8 +115,6 @@ We are currently revamping that process so check back soon for a link. In the me
 
 [Architecture Overview](https://youtu.be/HM3kv0XwJZc?t=42m11s)
 
-
-
 ### Where we work
 
 * Say hi on our chat!
@@ -153,7 +151,6 @@ We are currently revamping that process so check back soon for a link. In the me
 ### Architecture
 
 See [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/ARCHITECTURE.md)
-
 
 ### Identifying "Meaningful Changes"
 

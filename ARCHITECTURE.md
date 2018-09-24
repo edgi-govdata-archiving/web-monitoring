@@ -2,7 +2,6 @@
 -   [Definition of Terms](#0)
 -   [System Architecture](#1)
 -   [Deployment Plan](#2)
--   [Schema](#3)
 
 <a id="0"></a>
 ## Definition of Terms
@@ -35,84 +34,12 @@ The project is currently divided into several repositories handling complementar
 * [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) ([@Mr0grog](https://github.com/Mr0grog))
   A set of Node.js scripts used to extract data from Versionista and load it into the database. It also generates the CSV files that analysts currently use in Google Spreadsheets to review changes. This project runs on its own, but in the future may be managed by or merged into `web-monitoring-processing`.
 
+For more details about the models we use in Scanner see the web-monitoring-db's [API documentation](https://api.monitoring.envirodatagov.org/).
+
 <a id="2"></a>
 ## Deployment Plan
 
 The software will be deployed on Google Cloud, with each component running in a
 separate Docker container.
 
-<a id="3"></a>
-## Schema
 
-This describes the schema of the Postgres database used by the Rails app in
-[**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db).
-Review the Definition of Terms section above, which corresponds to these tables.
-
-Every table includes:
-
-* uuid: UUID4 unique identifier
-* created_at: internal detail of the database
-* updated_at: internal detail of the database
-
-in addition to the table-specific fields listed below.
-
-### Pages
-
-* url: URL, which may be updated over time if a page is moved
-* url_key: A canonical version of the Page's URL. It is mostly used for determining whether versions from different capture_urls represent the same page, e.g. `http://epa.gov` vs. `https://epa.gov`. For more about the SURT format, see: http://crawler.archive.org/articles/user_manual/glossary.html#surt
-* title: `<title>` tag
-* agency: Government agency
-* site: A category used to organizing Pages, loosely but not always the
-  subdomain of the URL.
-
-### Versions
-
-* page_uuid: reference to a Page
-* capture_time: The time that the version was captured at.
-* capture_url: The exact URL the version was originally captured at. A page may capture versions from several URLs that are *effectively* the same, but the `capture_url` on Version gives the exact URL.
-* uri: path to stored (HTML) data; could be a file path, S3 bucket, etc.
-* version_hash: A SHA-256 hash of the version’s raw content.
-* source_type: Name of source (such as 'Internet Archive')
-* source_metadata: JSON blob of extra info particular to the source.
-  A JSON blob containing extra source specific information. This field is free-form, but the data will generally follow one of the formats documented under the models section that has a name starting with "source_metadata_." For example: `source_metadata_versionista`
-  * `source_type: 'versionista'`
-    * `account`: A string identifying which Versionista account the data came from. This will generally be `versionista1` or `versionista2`.
-    * `site_id`: ID of the site in Versionista
-    * `page_id`: ID of the page in Versionista
-    * `version_id`: ID of the version in Versionista
-    * `url`: The full URL to view this version in Versionista. You’ll need to be logged into the appropriate Versionista account to make use of it.
-    * `diff_with_previous_url`: URL to diff view in Versionista (comparing with previous version)
-    * `diff_length`: Length (in characters) of the diff identified by the above `diff_with_previous_url`.
-    * `diff_hash`: SHA 256 hash of the above diff identified by `diff_with_previous_url`.
-    * `diff_with_first_url`: URL to diff view in Versionista (comparing with the first recorded version)
-    * `has_content`: Boolean indicating whether Versionista had raw content for this version. If this is true, the version’s `uri` should have a value (and vice-versa).
-    * `error_code`: If HTTP status code returned to Versionista when it originally scraped the page was a non-200 (OK) status, this property will be present. Its value is the status code of the response, e.g. `403`, `500`, etc.
-
-### Changes
-
-* uuid_from: reference to the "before" Version
-* uuid_to: reference to the "after" Version
-* priority: a number between 0 and 1 where 1 is high priority
-* current_annotation: a JSON blob reduction of one or
-  more submitted Annotations, resolving conflicts in some way yet to be
-  determined
-
-###  Diffs
-* data
-    * page_id: string
-    * from_version_id: string
-    * to_version_id: string
-    * diff_service: string
-    * content: Most responses contain this structure, but what is actually in `content` depends on the type of diff.
-        * diff: depends on diff type
-        * version: 
-
-### Annotations
-
-* author_id: user id
-* from_version: string
-* to_version: string
-* annotation: JSON blob
-
-
-For more details see the [API documentation](https://api.monitoring.envirodatagov.org/).
