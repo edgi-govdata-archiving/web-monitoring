@@ -1,9 +1,28 @@
-# Web Monitoring
+# EDGI: Web Monitoring Project
 
+[**Environmental Data & Governance Initiative**][edgi] (EDGI) is an
+international network of academics and non-profits addressing potential
+threats to federal environmental and energy policy, and to the
+scientific research infrastructure built to investigate, inform, and
+enforce them.
 
-This repository is for EDGI [Web Monitoring Project](https://github.com/edgi-govdata-archiving/web-monitoring) documentation and project-wide issue management.
+[**Website Monitoring**][webmon] is an EDGI project aspiring to build
+tools and community around monitoring changes to government websites,
+both environment-related and otherwise.
 
-EDGI is already monitoring tens of thousands of pages and will eventually be monitoring tens of millions (or even as many as ~1 billion). Currently, there is a lot of manual labor that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
+   [edgi]: https://envirodatagov.org/
+   [webmon]: https://envirodatagov.org/website-monitoring/ 
+
+This [repository][repo] is for project-wide documentation and [issues-tracking][issues].
+
+   [repo]: https://github.com/edgi-govdata-archiving/web-monitoring
+   [issues]: https://github.com/edgi-govdata-archiving/web-monitoring/issues
+
+This project and its associated efforts are already monitoring tens of thousands of government web pages.
+But we aspire for larger impact, eventually monitoring tens of millions or more.
+Currently, there is a lot of manual labor that goes into reviewing all changes,
+regardless of whether they are meaningful or not.
+Any system will need to emphasize usability of the UI and efficiency of computational resources.
 
 - [Technologies Used](#hammer-technologies-used)
 - [Project Goals](#project-goals)
@@ -11,7 +30,7 @@ EDGI is already monitoring tens of thousands of pages and will eventually be mon
 - [Project Overview](#project-overview)
 - [License & Copyright](#license--copyright)
 
-You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones) within the GitHub issue queue.
+You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones).
 
 ## :hammer: Technologies Used
 
@@ -72,20 +91,29 @@ And don't worry -- you definitely don't need to know all of them!
 
 ## Project Goals
 
-The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system aims to make these changes easy to track, review, and report on.
+The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system a.k.a. Scanner aims to make these changes easy to track, review, and report on.
 
-For more, see [the Version Tracking page on the EDGI website](https://envirodatagov.org/version-tracking/) and watch this
-[50-minute Analyst training video](https://www.youtube.com/watch?v=iFz9xhD41G8).
+Broadly speaking:
+1. Scanner _receives periodic scrapes_ of target websites from archival sources.
+2. **(Not yet implemented)** Scanner processes data to _sift out meaningful changes_ for volunteer analysts. 
+3. Volunteers and experts work together to _further sift out meaningful changes_ and qualify them for journalists by writing reports.
+4. Journalists _build narratives and amplify stories_ for the wider public.
 
 ## How to Help
 
-The best way to get involved is to take a run through [our onboarding
-process][onboarding], for which we rely on Trello. It's designed to be self-directed,
+The best way to get involved is to take a run through our onboarding
+process, for which we rely on Trello. It's designed to be self-directed,
 so you can run through it at your own pace. But don't worry -- along the
 way, it will introduce you to the humans of EDGI's Web Monitoring
 project! Yay humans!
 
 [![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
+
+We are currently revamping that process so check back soon for a link. In the meantime these developer onboarding videos, though long, will be useful.
+
+[Developer Orientation](https://www.youtube.com/watch?v=ig8rjII0wkU&index=88&list=PLtsP3g9LafVtj6IOMk05aOh-DdpuqWhue&t=0s)
+
+[Architecture Overview](https://youtu.be/HM3kv0XwJZc?t=42m11s)
 
 ### Where we work
 
@@ -102,9 +130,9 @@ project! Yay humans!
 ### Use Case
 
 1. Access captured data (starting with HTML, later encompassing more types) from
-   multiple archival sources including Versionista, PageFreezer, and the
+   multiple archival sources including Versionista and the
    Internet Archive.
-2. Compare version of the same page over time --- potentially using multiple
+2. Compare versions of the same page over time --- potentially using multiple
    different strategies.
 3. Automatically filter out "nonmeaningful" or repetitive changes: for example,
    the "Page Last Viewed" timestamp updated or the same news article was added
@@ -118,43 +146,11 @@ project! Yay humans!
    identified as relevant to fact-based governance.
 6. Collect annotations from the analysts. Use this to flag changes for special
    attention from EDGI administrators. Also, use it to feed back into the
-   filtering and prioritization process. (That is, use it to train models.)
-
-### Definition of Terms
-
-* Page: a web page crawled over time by one or more services like Internet
-  Archive, Versionista, or PageFreezer.
-* Version: a snapshot of a Page at a specific time (saved as HTML, for now).
-* Change: two different Versions of the same Page.
-* Diff: a representation of a Change: this could be a plain text `diff` (as in
-  the UNIX command line utility) or a richer representation (as in the JSON blobs
-  returned by PageFreezer) considers HTML semantics.
-* Annotation: a set of key-value pairs characterizing a given Change, submitted
-  by a human analyst or generated by an automated process. A given Change might
-  be annotated by multiple analysts, thus creating multiple Annotations per
-  Change.
-
-For more detail, see the Schema section below.
+   filtering and prioritization process. 
 
 ### Architecture
 
-The project is currently divided into several repositories handling complementary aspects of the task. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces. For additional information, you can contact the active maintainers listed alongside each repo or our Project Manager, [@weatherpattern](https://github.com/weatherpattern):
-* [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db) ([@Mr0grog](https://github.com/Mr0grog))
-  A Ruby on Rails app that serves database data via a REST API, serves diffs and collects human-entered annotations.
-* [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui) ([@lightandluck](https://github.com/lightandluck))
-  React front-end that provides useful views of the diffs. It
-  communicates with the Rails app via JSON.
-* [**web-monitoring-processing**](https://github.com/edgi-govdata-archiving/web-monitoring-processing) ([@danielballan](https://github.com/danielballan))
-  A Python backend ingests new captured HTML, computes diffs (for now, by
-  querying PageFreezer), performs prioritization/filtering, and populates
-  databases for Rails app.
-* [**web-monitoring-versionista-scraper**](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) ([@Mr0grog](https://github.com/Mr0grog))
-  A set of Node.js scripts used to extract data from Versionista and load it into the database. It also generates the CSV files that analysts currently use in Google Spreadsheets to review changes. This project runs on its own, but in the future may be managed by or merged into `web-monitoring-processing`.
-
-### Deployment Plan
-
-The software will be deployed on Google Cloud, with each component running in a
-separate Docker container.
+See [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/ARCHITECTURE.md)
 
 ### Identifying "Meaningful Changes"
 
@@ -176,79 +172,6 @@ An example of a **meaningful** change:
 
 This is a small but illustrative sample. Many more samples will be made
 available as soon as possible.
-
-### Schema
-
-This describes the schema of the SQL databases shared by the Rails app in
-[**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db) and the Python processing backend in web-monitoring-processing.
-Review the Definition of Terms section above, which corresponds to these tables.
-
-Every table includes:
-
-* uuid: UUID4 unique identifier
-* created_at: internal detail of the database
-* updated_at: internal detail of the database
-
-in addition to the table-specific fields listed below.
-
-#### Pages
-
-* url: URL, which may be updated over time if a page is moved
-* title: `<title>` tag
-* agency: Government agency
-* site: A category used to organizing Pages, loosely but not always the
-  subdomain of the URL.
-
-#### Versions
-
-* page_uuid: reference to a Page
-* capture_time: when this snapshot of the Page was acquired
-* uri: path to stored (HTML) data; could be a file path, S3 bucket, etc.
-* version_hash: sha256 hash of stored data
-* source_type: name of source (such as 'Internet Archive')
-* source_metadata: JSON blob of extra info particular to the source.
-  This field is free-form, but we generally expect the following content for a
-  given `source_type`:
-  * `source_type: 'versionista'`
-    * `account`: A string identifying which Versionista account the data came from. This will generally be `versionista1` or `versionista2`.
-    * `site_id`: ID of the site in Versionista
-    * `page_id`: ID of the page in Versionista
-    * `version_id`: ID of the version in Versionista
-    * `url`: The full URL to view this version in Versionista. You’ll need to be logged into the appropriate Versionista account to make use of it.
-    * `diff_with_previous_url`: URL to diff view in Versionista (comparing with previous version)
-    * `diff_length`: Length (in characters) of the diff identified by the above `diff_with_previous_url`.
-    * `diff_hash`: SHA 256 hash of the above diff identified by `diff_with_previous_url`.
-    * `diff_with_first_url`: URL to diff view in Versionista (comparing with the first recorded version)
-    * `has_content`: Boolean indicating whether Versionista had raw content for this version. If this is true, the version’s `uri` should have a value (and vice-versa).
-    * `error_code`: If HTTP status code returned to Versionista when it originally scraped the page was a non-200 (OK) status, this property will be present. Its value is the status code of the response, e.g. `403`, `500`, etc.
-
-#### Changes
-
-* uuid_from: reference to the "before" Version
-* uuid_to: reference to the "after" Version
-* priority: a number between 0 and 1 where 1 is high priority
-* current_annotation: a JSON blob production a materialized reduction of one or
-  more submitted Annotations, resolving conflicts in some way yet to be
-  determined
-
-####  Diffs
-
-* change_uuid: reference to a Change that this Diff represents
-* uri: path to stored diff data; could be a file path, S3 bucket, etc.
-* diff_hash: sha256 has of stored diff data
-* source_type: name of diffing utility (such as 'PageFreezer')
-* source_metadata: JSON blob of extra info particular to the source
-
-#### Annotations
-
-* change_uuid: reference to a Change that this Annotation characterizes
-* annotation: JSON blob
-* author: user id
-
-(This summary omits Users and Invitations, which are implemented in the Rails
-app.)
-
-For more details see the [Python implementation](https://github.com/edgi-govdata-archiving/web-monitoring-processing/blob/master/web_monitoring/db.py) and the [Ruby implementation (currently in progress)](https://github.com/edgi-govdata-archiving/web-monitoring-db/pull/15).
 
 ## Code of Conduct
 
