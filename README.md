@@ -91,7 +91,7 @@ And don't worry -- you definitely don't need to know all of them!
 
 ## Project Goals
 
-The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system aka Scanner aims to make these changes easy to track, review, and report on.
+The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system a.k.a. Scanner aims to make these changes easy to track, review, and report on.
 
 Broadly speaking:
 1. Scanner _receives periodic scrapes_ of target websites from archival sources.
