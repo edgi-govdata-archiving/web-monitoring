@@ -61,7 +61,7 @@ For UI, it is not currently required. Note, we want to begin requiring it in the
 
 ### Pull Request assignment:
 
-Before starting to work on an issue, check for assigness. If no one is assignd to it, assign it to yourself. For new contributions, add a comment that you are working on it. If someone is assigned to it, but you don't see any activity on the issue, make a friendly inquire to see if it is actively being work on. 
+Before starting to work on an issue, check for assignees. If no one is assigned to it, assign it to yourself. For new contributions, add a comment that you are working on it. If someone is assigned to it, but you don't see any activity on the issue, make a friendly inquire to see if it is actively being work on. 
 
 ### Upgrading 3rd party dependencies:
 
