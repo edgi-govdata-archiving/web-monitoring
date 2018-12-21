@@ -2,6 +2,7 @@
 -   [Definition of Terms](#0)
 -   [System Architecture](#1)
 -   [Deployment Plan](#2)
+-   [Current Workflow](#3)
 
 <a id="0"></a>
 ## Definition of Terms
@@ -41,4 +42,18 @@ For more details about the models we use in Scanner see web-monitoring-db's [API
 - web-monitoring-processing and web-monitoring-versionista-scraper are manually deployed to servers on AWS.
 - We plan to re-deploy these to AWS as a Kubernetes cluster, **but that doesn’t exist yet.**
 
+<a id="3"></a>
 
+## Web Page Snapshotting/Capturing Workflow
+
+| Diagram key | What happens | What does this | How | Criteria |
+|-|-------------|-|-------|---------|
+| A | [Versionista](https://versionista.com/) is scraped | [web-monitoring-versionista-scraper](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) | Raw version bodies are scraped from Versionista, uploaded to S3, and the metadata (capture times, URLs, headers, etc.) are formatted and [POST](https://api.monitoring.envirodatagov.org/#/imports/post_imports_)ed to [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db)  | Runs on a cron job, formats per [GH issue comment](https://github.com/qri-io/walk/issues/16#issuecomment-437785099) |
+|B| [Internet Archive's Wayback Machine is queried for imports](https://archive.readme.io/docs) | [web-monitoring-processing](https://github.com/edgi-govdata-archiving/web-monitoring-processing) - this [PR](https://github.com/edgi-govdata-archiving/web-monitoring-processing/pull/174) | Data is pulled from the IA API, formatted, and [POST](https://api.monitoring.envirodatagov.org/#/imports/post_imports_)ed to [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) | Runs on a cron job, formats per [GH issue comment](https://github.com/qri-io/walk/issues/16#issuecomment-437785099) |
+|C| New metadata arrives at [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) and is stored in a database | Scripts running on cron jobs that do ETL via scrapes or APIs (These scripts: [Versionista scraper](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper), [Wayback Machine importer](https://github.com/edgi-govdata-archiving/web-monitoring-processing))| [POST](https://api.monitoring.envirodatagov.org/#/imports/post_imports_) to [/api/v0/imports](https://api.monitoring.envirodatagov.org/#/imports/post_imports_) as JSON array or newline-delimited JSON stream (stream preferred) | Contains:<ul><li> a URL for where to retrieve the raw response body of the version</li><li> a SHA-256 hash of that data</li></ul> Example data in [GH issue comment](https://github.com/qri-io/walk/issues/16#issuecomment-437785099)|
+|D| Determination is made whether or not to download the data | [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) | If the URL is in an acceptable, publicly readable location |  Acceptable location checked [per .env](https://github.com/edgi-govdata-archiving/web-monitoring-db/blob/30d976676935f5f621e18285016a137c8b55a0d8/.env.example#L26-L27) |
+|    ↳ E1| URL for raw data is stored  | [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) (URI in metadata is untouched)| [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) stores URL | Happens if [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) has determined not to download the data |
+|    ↳ E2| Raw data is verified and stored on URL we store and maintain | [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) (URI in metadata is changed to point to our new location) | Raw response data downloaded from the URL, verified against SHA-256 hash of the data from initial POST, and stores it (in production) in a public S3 bucket | Happens if [-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) has determined to download the data |
+| F | (Success state, data has been stored) | | | |
+
+[![diagram render](assets/workflow-diagram.png)](https://hackmd.io/-EAU-6WpQ0ypWzZ1ytyztA)
