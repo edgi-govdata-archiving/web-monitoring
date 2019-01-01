@@ -192,6 +192,7 @@ This project wouldn’t exist without a lot of amazing people’s help. Thanks t
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Maya Anjur-Dietrich |
 | [🔢](# "Content") | Marcy Beck |
 | [🔢](# "Content") [📋](# "Organizer") [🤔](# "Ideas and Planning") | Andrew Bergman |
+| [📖](# "Documentation") | Kelsey Breseman |
 | [🔢](# "Content") | Madelaine Britt |
 | [🔢](# "Content") | Ed Byrne |
 | [🔢](# "Content") | Morgan Currie |
