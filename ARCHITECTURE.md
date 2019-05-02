@@ -22,7 +22,7 @@
 
 ## System Architecture
 
-The project is currently divided into several repositories handling complementary aspects of web monitoring. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces. For additional information, you can contact the active maintainers listed alongside each repo or our Development Project Manager, [@jsnshrmn](https://github.com/jsnshrmn):
+The project is currently divided into several repositories handling complementary aspects of web monitoring. They can be developed and upgraded semi-independently, communicating via agreed-upon interfaces. For additional information, you can contact the active maintainers listed alongside each repo:
 * [**web-monitoring-db**](https://github.com/edgi-govdata-archiving/web-monitoring-db) ([@Mr0grog](https://github.com/Mr0grog))
   A Ruby on Rails app that serves database data via a REST API, serves diffs, and collects human-entered annotations.
 * [**web-monitoring-ui**](https://github.com/edgi-govdata-archiving/web-monitoring-ui) ([@lightandluck](https://github.com/lightandluck))
