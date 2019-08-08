@@ -38,8 +38,8 @@ The technical tooling for Web Monitoring is broken up into several repositories,
 | ---- | ----------- | ---------- |
 | [web-monitoring](https://github.com/edgi-govdata-archiving/web-monitoring) | **(This Repo!)** Project-wide documentation and issue tracking. | Markdown |
 | [web-monitoring-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) | A database and API that stores metadata about the pages, versions, changes we track, as well as human annotations about those changes. | Ruby, Rails, Postgresql |
-| [web-monitoring-ui](https://github.com/edgi-govdata-archiving/web-monitoring-ui) | A web-based UI (build in React) that shows diffs between different versions of the pages we track. It’s built on the API provided by web-monitoring-db. | JavaScript, React |
-| [web-monitoring-processing](https://github.com/edgi-govdata-archiving/web-monitoring-processing) | A suite of Python tools for diffing web pages in a variety of ways and for interfacting with external services like [the Internet Archive](https://archive.org). | Python, Tornado |
+| [web-monitoring-ui](https://github.com/edgi-govdata-archiving/web-monitoring-ui) | A web-based UI (built in React) that shows diffs between different versions of the pages we track. It’s built on the API provided by web-monitoring-db. | JavaScript, React |
+| [web-monitoring-processing](https://github.com/edgi-govdata-archiving/web-monitoring-processing) | A suite of Python tools for diffing web pages in a variety of ways and for interfacing with external services like [the Internet Archive](https://archive.org). | Python, Tornado |
 | [web-monitoring-versionista-scraper](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) | A set of Node.js scripts that extract data from Versionista and load it into web-monitoring-db. It also generates the CSV files that analysts currently use to manage their work on a weekly basis. | Node.js |
 | [web-monitoring-ops](https://github.com/edgi-govdata-archiving/web-monitoring-ops) | Server configuration and other deployment information for managing EDGI’s live instance of all these tools. | Kubernetes, Bash, AWS |
 
