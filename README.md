@@ -154,6 +154,7 @@ Finally, we want to give a huge thanks to partner organizations that have helped
 - [Google Cloud Platform](https://cloud.google.com)
 - [Google Summer of Code](https://summerofcode.withgoogle.com)
 - [DataKind](http://www.datakind.org/)
+- [The Internet Archive](https://archive.org/)
 
 
 ## License & Copyright
