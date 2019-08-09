@@ -1,4 +1,4 @@
-[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md)
+[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md) &nbsp;[![Project Status Board](https://img.shields.io/badge/✔-Project%20Status%20Board-green.svg?style=flat)](https://github.com/orgs/edgi-govdata-archiving/projects/4)
 
 # EDGI: Web Monitoring Project
 
@@ -13,7 +13,7 @@ EDGI uses these tools to publish reports that are written about in major publica
 
 This project and its associated efforts are already monitoring tens of thousands of government web pages. But we aspire for larger impact, eventually monitoring tens of millions or more. Currently, there is a lot of manual labor that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
 
-This [repository][repo] is for project-wide documentation and [issues-tracking][issues].
+**For a combined view of all issues and status, check [the project board][project_board].** This [repository][repo] is for project-wide documentation and [issues][issues].
 
   [edgi]: https://envirodatagov.org/
   [webmon]: https://envirodatagov.org/website-monitoring/ 
@@ -21,6 +21,7 @@ This [repository][repo] is for project-wide documentation and [issues-tracking][
   [article_termanalysis]: https://www.vice.com/en_ca/article/kzmmwe/under-trump-26-of-climate-change-references-have-vanished-from-gov-sites
   [repo]: https://github.com/edgi-govdata-archiving/web-monitoring
   [issues]: https://github.com/edgi-govdata-archiving/web-monitoring/issues
+  [project_board]: https://github.com/orgs/edgi-govdata-archiving/projects/4
 
 - [Project Structure](#project-structure)
 - [Get Involved](#get-involved)
