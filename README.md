@@ -1,162 +1,86 @@
-[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md)
+[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md) &nbsp;[![Project Status Board](https://img.shields.io/badge/✔-Project%20Status%20Board-green.svg?style=flat)](https://github.com/orgs/edgi-govdata-archiving/projects/4)
 
 # EDGI: Web Monitoring Project
 
-[**Environmental Data & Governance Initiative**][edgi] (EDGI) is an
-international network of academics and non-profits addressing potential
-threats to federal environmental and energy policy, and to the
-scientific research infrastructure built to investigate, inform, and
-enforce them.
+[**Website Monitoring**][webmon] is an [EDGI][edgi] project building tools and community around monitoring changes to government websites, both environment-related and otherwise. It includes technical tools for:
 
-[**Website Monitoring**][webmon] is an EDGI project aspiring to build
-tools and community around monitoring changes to government websites,
-both environment-related and otherwise.
+- Loading, storing, and analyzing historical snapshots of web pages
+- Providing an API for retrieving and updating data about those snapshots
+- A website for visualizing and browsing changes between those snapshots
+- Tools for managing the workflow of a team of human analysts using the above tools to track and publicize information about meaningful changes to government websites.
 
-   [edgi]: https://envirodatagov.org/
-   [webmon]: https://envirodatagov.org/website-monitoring/ 
+EDGI uses these tools to publish reports that are written about in major publications such as [The Atlantic][article_energykids] or [Vice][article_termanalysis]. Teams at other organizations use parts of this project for similar purposes or to provide comparisons between different versions of public web pages.
 
-This [repository][repo] is for project-wide documentation and [issues-tracking][issues].
+This project and its associated efforts are already monitoring tens of thousands of government web pages. But we aspire for larger impact, eventually monitoring tens of millions or more. Currently, there is a lot of manual labor that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
 
-   [repo]: https://github.com/edgi-govdata-archiving/web-monitoring
-   [issues]: https://github.com/edgi-govdata-archiving/web-monitoring/issues
+**For a combined view of all issues and status, check [the project board][project_board].** This [repository][repo] is for project-wide documentation and [issues][issues].
 
-This project and its associated efforts are already monitoring tens of thousands of government web pages.
-But we aspire for larger impact, eventually monitoring tens of millions or more.
-Currently, there is a lot of manual labor that goes into reviewing all changes,
-regardless of whether they are meaningful or not.
-Any system will need to emphasize usability of the UI and efficiency of computational resources.
+  [edgi]: https://envirodatagov.org/
+  [webmon]: https://envirodatagov.org/website-monitoring/ 
+  [article_energykids]: https://www.theatlantic.com/science/archive/2017/02/energy-kids/516978/
+  [article_termanalysis]: https://www.vice.com/en_ca/article/kzmmwe/under-trump-26-of-climate-change-references-have-vanished-from-gov-sites
+  [repo]: https://github.com/edgi-govdata-archiving/web-monitoring
+  [issues]: https://github.com/edgi-govdata-archiving/web-monitoring/issues
+  [project_board]: https://github.com/orgs/edgi-govdata-archiving/projects/4
 
-- [Technologies Used](#hammer-technologies-used)
-- [Project Goals](#project-goals)
-- [How to Help](#how-to-help)
+- [Project Structure](#project-structure)
+- [Get Involved](#get-involved)
 - [Project Overview](#project-overview)
+- [Code of Conduct](#code-of-conduct)
+- [Contributors & Sponsors](#contributors)
 - [License & Copyright](#license--copyright)
 
-You can **track upcoming releases** by exploring our [milestones](https://github.com/edgi-govdata-archiving/web-monitoring/milestones).
 
-## :hammer: Technologies Used
+## Project Structure
 
-To help newcomers better understand where they might be able to
-contribute, these are the main tools that we use and are having
-discussions around within this project. This includes software in
-the application, but also platforms that we rely on.
+The technical tooling for Web Monitoring is broken up into several repositories, each named `web-monitoring-{name}`:
 
-And don't worry -- you definitely don't need to know all of them!
+| Repo | Description | Tools Used |
+| ---- | ----------- | ---------- |
+| [web-monitoring](https://github.com/edgi-govdata-archiving/web-monitoring) | **(This Repo!)** Project-wide documentation and issue tracking. | Markdown |
+| [web-monitoring-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) | A database and API that stores metadata about the pages, versions, changes we track, as well as human annotations about those changes. | Ruby, Rails, Postgresql |
+| [web-monitoring-ui](https://github.com/edgi-govdata-archiving/web-monitoring-ui) | A web-based UI (built in React) that shows diffs between different versions of the pages we track. It’s built on the API provided by web-monitoring-db. | JavaScript, React |
+| [web-monitoring-processing](https://github.com/edgi-govdata-archiving/web-monitoring-processing) | A suite of Python tools for diffing web pages in a variety of ways and for interfacing with external services like [the Internet Archive](https://archive.org). | Python, Tornado |
+| [web-monitoring-versionista-scraper](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) | A set of Node.js scripts that extract data from Versionista and load it into web-monitoring-db. It also generates the CSV files that analysts currently use to manage their work on a weekly basis. | Node.js |
+| [web-monitoring-ops](https://github.com/edgi-govdata-archiving/web-monitoring-ops) | Server configuration and other deployment information for managing EDGI’s live instance of all these tools. | Kubernetes, Bash, AWS |
 
-* **HTML & CSS.**
-* **SASS.**
-* [**Ruby on Rails.**][rails] A web application development framework used for API server.
-* **Javascript.** Notable packages include:
-    * [**Webpack.**][webpack] A _static module bundler_ for modern JavaScript
-      applications.
-    * [**ReactJS.**][reactjs] A JavaScript library for building user
-      interfaces.
-* **Python.** Notable packages include:
-    * [**Beautiful Soup.**][beautifulsoup] A library for pulling data out
-      of HTML and XML files.
-    * [**Tornado.**][tornado] A web server and application framework.
-* [**Postgresql.**][postgres] A powerful, open source
-  object-relational database system.
-* [**Redis.**][redis] An open source, in-memory data structure store,
-  used as a database, cache and message broker.
-* [**Swagger.**][swagger] A spec and framework for API developer tools.
-* [**Heroku.**][heroku] A platform for easily deploying applications.
-* [**Ansible.**][ansible] An open source automation platform for
-  software configuration.
-* [**Docker.**][docker] Runs "containers images" to help make running
-  software simpler for developers.
-* [**Versionista.**][versionista] Enterprise tool for webpage change
-  detection and alerts.
-* [**Internet Archive.**][ia] A nonprofit-led digital library of
-  Internet website history going back 20+ years.
-* [**Amazon Web Services. (AWS)**][aws] A hosted cloud services platform
-  for servers, databases, file storage, etc.
-* [**Sentry.**][sentry] A hosted error-tracking service, that happens to
-  be open source.
+For more on how all these parts fit together, see [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/ARCHITECTURE.md).
 
-   [heroku]: https://www.heroku.com/what
-   [reactjs]: https://thinkster.io/tutorials/what-exactly-is-react
-   [sentry]: https://sentry.io/about/
-   [redis]: https://redis.io/topics/introduction
-   [rails]: http://guides.rubyonrails.org/getting_started.html
-   [swagger]: https://swagger.io/
-   [docker]: https://www.docker.com/what-container
-   [postgres]: https://www.postgresql.org/about/
-   [aws]: https://aws.amazon.com/what-is-aws/
-   [ansible]: https://networklore.com/ansible/
-   [versionista]: https://versionista.com/about
-   [ia]: https://archive.org/about/
-   [webpack]: https://webpack.js.org/concepts/
-   [tornado]: http://www.tornadoweb.org/en/stable/
-   [web-monitoring-db]: https://github.com/edgi-govdata-archiving/web-monitoring-db
-   [beautifulsoup]: https://medium.freecodecamp.org/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe
 
-## Project Goals
+## Get Involved
 
-The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). The Website Monitoring automated system a.k.a. Scanner aims to make these changes easy to track, review, and report on.
+We’d love your help on improving this project! If you are interested in getting involved…
 
-Broadly speaking:
-1. Scanner _receives periodic scrapes_ of target websites from archival sources.
-2. **(Not yet implemented)** Scanner processes data to _sift out meaningful changes_ for volunteer analysts. 
-3. Volunteers and experts work together to _further sift out meaningful changes_ and qualify them for journalists by writing reports.
-4. Journalists _build narratives and amplify stories_ for the wider public.
-
-## How to Help
-
-The best way to get involved is to take a run through our onboarding
-process, for which we rely on Trello. It's designed to be self-directed,
-so you can run through it at your own pace. But don't worry -- along the
-way, it will introduce you to the humans of EDGI's Web Monitoring
-project! Yay humans!
-
-[![Onboarding screenshot](http://i.imgur.com/JmFiMue.png)][onboarding]
-
-We are currently revamping that process so check back soon for a link. In the meantime these developer onboarding videos, though long, will be useful.
-
-[Developer Orientation](https://www.youtube.com/watch?v=ig8rjII0wkU&index=88&list=PLtsP3g9LafVtj6IOMk05aOh-DdpuqWhue&t=0s)
-
-[Architecture Overview](https://youtu.be/HM3kv0XwJZc?t=42m11s)
-
-### Where we work
-
-* Say hi on our chat!
-   * [Create](https://archivers-slack.herokuapp.com/) an account on Slack team.
-   * Join us in the `#webmonitoring` channel.
+* Chat with us on [Slack (https://archivers.slack.com)](https://archivers.slack.com)
+    * You can sign up for an account at https://archivers-slack.herokuapp.com/
+    * Join us in the `#webmonitoring` channel.
 * Attend a software development call.
-   * [Join](https://edgi-video-call-landing-page.herokuapp.com/https://zoom.us/j/187414228) our call, every Wednesday at 12pm ET.
-   * Zoom Meeting account is optional. See above link for details.
-   * We keep [notes](https://drive.google.com/drive/u/0/folders/0BxkWFSoyVYI3YVZXY1JxVllFVkU) for all meetings.
+    * [Join our call](https://edgi-video-call-landing-page.herokuapp.com/https://zoom.us/j/187414228), every other Wednesday at 12pm ET.
+    * Zoom Meeting account is optional. See above link for details.
+    * We keep [notes](https://drive.google.com/drive/u/0/folders/0BxkWFSoyVYI3YVZXY1JxVllFVkU) for all meetings.
+* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
+* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
+
 
 ## Project Overview
 
-### Use Case
+### Project Goals
 
-1. Access captured data (starting with HTML, later encompassing more types) from
-   multiple archival sources including Versionista and the
-   Internet Archive.
-2. Compare versions of the same page over time --- potentially using multiple
-   different strategies.
-3. Automatically filter out "nonmeaningful" or repetitive changes: for example,
-   the "Page Last Viewed" timestamp updated or the same news article was added
-   to 100 pages from the same website.
-4. Prioritize the changes most likely to be "meaningful," meaning that some
-   item of importance to fact-based governance was deleted or changed in a
-   harmful way.
-5. Present changes to human analysts with useful visualizations and statistics
-   to help them differentiate meaningful changes. Each user will have been
-   assigned a "subdomain", a full or partial government domain that has been
-   identified as relevant to fact-based governance.
-6. Collect annotations from the analysts. Use this to flag changes for special
-   attention from EDGI administrators. Also, use it to feed back into the
-   filtering and prioritization process. 
+The purpose of the system is to enable analysts to quickly review monitored government websites in order to report on [__meaningful changes__](#identifying-meaningful-changes). In order to do so, the system, a.k.a. Scanner, does several major tasks:
 
-### Architecture
+1. Interfaces with other archival services (like the Internet Archive) to _save snapshots of web pages_.
+2. _Imports_ those snapshots and other metadata from archival sources.
+3. Determines _which snapshots represent a change_ from a previous version of the page.
+4. Process changes to automatically _determine a priority_ or _sift out meaningful changes_ for deeper analysis by humans.
+5. Volunteers and experts work together to _further sift out meaningful changes_ and qualify them for journalists by writing reports.
+4. Journalists _build narratives and amplify stories_ for the wider public.
 
-See [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/ARCHITECTURE.md)
 
 ### Identifying "Meaningful Changes"
 
-The vast majority of changes to web pages are not relevant to analysts and we want to avoid presenting those irrelevant changes to analysts at all. It is, of course, not trivial to identify "meaningful" changes immediately, and we expect that analysts will always be involved in a decision about whether some changes are "important" or not. However, as we expand from 10<sup>4</sup> to 10<sup>7</sup> web pages, we need to drastically reduce the number of pages that analysts look at. 
+The majority of changes to web pages are not relevant and we want to avoid presenting those irrelevant changes to human analysts. Identifying irrelevant changes in an automated way is not easy, and we expect that analysts will always be involved in a decision about whether some changes are "important" or not.
+
+However, as we expand the number of web pages we monitor, we definitely need to develop tools to reduce the number of pages that analysts must look at. 
 
 Some examples of **meaningless** changes: 
 - it's not unusual for a page to have a view counter on the bottom. In this case, the page changes **by definition** every time you view it.
@@ -167,23 +91,17 @@ An example of a **meaningful** change:
 
 ### Sample Data
 
-[`example-data`](./example-data) contains examples of website changes:
+The [`example-data`](./example-data) folder contains examples of website changes to use for analysis.
 
-- `falsepos-...` files are cases any filter should catch
-- `truepos...` files are cases of changes we care about
-
-This is a small but illustrative sample. Many more samples will be made
-available as soon as possible.
 
 ## Code of Conduct
 
 This repository falls under EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
 
-## Contributing
 
-Don't forget to check out the "How To Help" section above.
+## Contributors
 
-See our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
+### Individuals
 
 This project wouldn’t exist without a lot of amazing people’s help. Thanks to the following for their work reviewing URL's, monitoring changes, writing [reports](https://envirodatagov.org/website-monitoring/), and a slew of so many other things!
 
@@ -225,7 +143,7 @@ This project wouldn’t exist without a lot of amazing people’s help. Thanks t
 (For a key to the contribution emoji or more info on this format, check out [“All Contributors.”](https://github.com/kentcdodds/all-contributors))
 
 
-## Sponsors & Partners
+### Sponsors & Partners
 
 Finally, we want to give a huge thanks to partner organizations that have helped to support this project with their tools and services:
 
@@ -237,11 +155,12 @@ Finally, we want to give a huge thanks to partner organizations that have helped
 - [Google Cloud Platform](https://cloud.google.com)
 - [Google Summer of Code](https://summerofcode.withgoogle.com)
 - [DataKind](http://www.datakind.org/)
+- [The Internet Archive](https://archive.org/)
 
 
 ## License & Copyright
 
-Copyright (C) 2017 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
+Copyright (C) 2017-2019 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation in this repository is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
 
-   [onboarding]: https://trello.com/b/FCGGEaQq/edgi-web-monitoring-project-onboarding
+Software code in other Web Monitoring repositories is generally licensed under the GPL v3 license, but make sure to check each repository’s README for specifics.
 
