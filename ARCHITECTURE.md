@@ -38,12 +38,26 @@ For more details about the models we use in Scanner see web-monitoring-db's [API
 <a id="2"></a>
 ## Deployment Plan
 
-- web-monitoring-db and web-monitoring-ui are services that run on Heroku.
-- web-monitoring-processing and web-monitoring-versionista-scraper are manually deployed to servers on AWS.
-- We plan to re-deploy these to AWS as a Kubernetes cluster, **but that doesn’t exist yet.**
+In most cases, we manage deployment using [Kubernetes](https://kubernetes.io/) running inside AWS. For scheduled jobs (such as importing data once a day from the Internet Archive), we have manually configured servers in AWS. Instructions and configuration for both types of services is managed in the [web-monitoring-ops repo][ops-repo].
+
+Inside our Kubernetes cluster, we manage **two namespaces**: “staging” and “production”. The staging namespace has fewer instances of most services and operates against a smaller database that we might reset from time to time. It’s good for testing things. We typically deploy new code to both at the same time, but occasionally send new code only to staging or use a configuration variable to only turn the new code on in staging if it needs more rigorous testing.
+
+How code gets from a repo and onto a server via Kubernetes:
+
+1. When we are ready to deploy code, we merge the `master` branch into the `release` branch of the relevant repo, which triggers our continuous integration service to automatically build and publish a Docker image to hub.docker.com/u/envirodgi.
+
+    Images are tagged with the SHA1 of the git commit they were built from. For example, the image `envirodgi/db-rails-server:ddc246819a039465e7711a1abd61f67c14b7a320` was built from [commit `ddc246819a039465e7711a1abd61f67c14b7a320`](https://github.com/edgi-govdata-archiving/web-monitoring-db/commit/ddc246819a039465e7711a1abd61f67c14b7a320) in web-monitoring-db.
+
+2. Someone manually updates the Kubernetes configuration files in [web-monitoring-ops][ops-repo] to point to the new images.
+
+3. Someone uses the `kubectl` command-line tool to update our Kubernetes cluster with the new configuration files.
+
+Manually managed servers don’t have any special process, and each one might be different. Check the [web-monitoring-ops repo][ops-repo] for details on each one.
+
+  [ops-repo]: https://github.com/edgi-govdata-archiving/web-monitoring-ops
+
 
 <a id="3"></a>
-
 ## Web Page Snapshotting/Capturing Workflow
 
 | Diagram key | What happens | What does this | How | Criteria |
