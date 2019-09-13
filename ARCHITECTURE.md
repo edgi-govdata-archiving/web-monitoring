@@ -44,7 +44,7 @@ Inside our Kubernetes cluster, we manage **two namespaces**: “staging” and �
 
 How code gets from a repo and onto a server via Kubernetes:
 
-1. When we are ready to deploy code, we merge the `master` branch into the `release` branch of the relevant repo, which triggers our continuous integration service to automatically build and publish a Docker image to hub.docker.com/u/envirodgi.
+1. When we are ready to deploy code, we merge the `master` branch into the `release` branch of the relevant repo, which triggers our continuous integration service to automatically build and publish a Docker image to https://hub.docker.com/u/envirodgi.
 
     Images are tagged with the SHA1 of the git commit they were built from. For example, the image `envirodgi/db-rails-server:ddc246819a039465e7711a1abd61f67c14b7a320` was built from [commit `ddc246819a039465e7711a1abd61f67c14b7a320`](https://github.com/edgi-govdata-archiving/web-monitoring-db/commit/ddc246819a039465e7711a1abd61f67c14b7a320) in web-monitoring-db.
 
