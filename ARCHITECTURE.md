@@ -1,8 +1,7 @@
 # Web Monitoring Architecture
 -   [Definition of Terms](#0)
 -   [System Architecture](#1)
--   [Deployment Plan](#2)
--   [Current Workflow](#3)
+-   [Current Workflow](#2)
 
 <a id="0"></a>
 ## Definition of Terms
@@ -35,15 +34,8 @@ The project is currently divided into several repositories handling complementar
 
 For more details about the models we use in Scanner see web-monitoring-db's [API documentation](https://api.monitoring.envirodatagov.org/).
 
+
 <a id="2"></a>
-## Deployment Plan
-
-- web-monitoring-db and web-monitoring-ui are services that run on Heroku.
-- web-monitoring-processing and web-monitoring-versionista-scraper are manually deployed to servers on AWS.
-- We plan to re-deploy these to AWS as a Kubernetes cluster, **but that doesn’t exist yet.**
-
-<a id="3"></a>
-
 ## Web Page Snapshotting/Capturing Workflow
 
 | Diagram key | What happens | What does this | How | Criteria |
