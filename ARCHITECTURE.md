@@ -1,8 +1,7 @@
 # Web Monitoring Architecture
 -   [Definition of Terms](#0)
 -   [System Architecture](#1)
--   [Deployment Plan](#2)
--   [Current Workflow](#3)
+-   [Current Workflow](#2)
 
 <a id="0"></a>
 ## Definition of Terms
@@ -35,42 +34,8 @@ The project is currently divided into several repositories handling complementar
 
 For more details about the models we use in Scanner see web-monitoring-db's [API documentation](https://api.monitoring.envirodatagov.org/).
 
+
 <a id="2"></a>
-## Deployment Plan
-
-We currently run all our services in AWS:
-- *Services* are managed by [Kubernetes](https://kubernetes.io/),
-- *Scheduled jobs* are currently run on manually configured EC2 instances, and
-- We use a handful of AWS services like S3 and RDS.
-
-Instructions and configuration for all of these are stored [web-monitoring-ops repo][ops-repo]. Releasing new versions of code and deploying those releases to servers are both semi-manual processes.
-
-
-### Releasing/Publishing New Versions
-
-Most of our code repos automatically publish new releases (Docker images to https://hub.docker.com/u/envirodgi and packages to the relevant package managers) when code is pushed to the `release` branch. We usually create *merge commits* on the `release` branch that note the PRs included in the release or any other relevant notes (e.g. [`Release #503, #504`](https://github.com/edgi-govdata-archiving/web-monitoring-db/commit/67e4510d1f2a8c7f01542cc86a6361539ef77fa5)). Since most of our code is not widely distributed, we don’t currently include release notes that describe the changes in more detail.
-
-Docker images are tagged with the SHA-1 of the git commit they were built from. For example, the image `envirodgi/db-rails-server:ddc246819a039465e7711a1abd61f67c14b7a320` was built from [commit `ddc246819a039465e7711a1abd61f67c14b7a320`](https://github.com/edgi-govdata-archiving/web-monitoring-db/commit/ddc246819a039465e7711a1abd61f67c14b7a320) in web-monitoring-db.
-
-
-### Deploying Releases to Servers
-
-Services running in Kubernetes always use the Docker images we release as above. Inside our Kubernetes cluster, we manage **two namespaces**: “staging” and “production”. The staging namespace has fewer instances of most services and operates against a smaller database that we might reset from time to time. It’s good for testing things. We typically deploy new code to both at the same time, but occasionally send new code only to staging or use a configuration variable to only turn the new code on in staging if it needs more rigorous testing. To update Kubernetes:
-
-1. When we are ready to deploy code, trigger a release as described above.
-
-2. Update the Kubernetes configuration files in [web-monitoring-ops][ops-repo] to point to the new images. Adjust secrets and environment variables as appropriate for the new release.
-
-3. Use the `kubectl` command-line tool to update our Kubernetes cluster with the new configuration files.
-
-Manually managed servers (for our scheduled jobs) tend to each have their own process. Check the [web-monitoring-ops repo][ops-repo] for details on each one.
-
-Manually managed AWS services like RDS or S3 are also described in [web-monitoring-ops][ops-repo].
-
-  [ops-repo]: https://github.com/edgi-govdata-archiving/web-monitoring-ops
-
-
-<a id="3"></a>
 ## Web Page Snapshotting/Capturing Workflow
 
 | Diagram key | What happens | What does this | How | Criteria |
