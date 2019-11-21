@@ -23,12 +23,26 @@ This project and its associated efforts are already monitoring tens of thousands
   [issues]: https://github.com/edgi-govdata-archiving/web-monitoring/issues
   [project_board]: https://github.com/orgs/edgi-govdata-archiving/projects/4
 
-- [Project Structure](#project-structure)
 - [Get Involved](#get-involved)
+- [Project Structure](#project-structure)
 - [Project Overview](#project-overview)
 - [Code of Conduct](#code-of-conduct)
 - [Contributors & Sponsors](#contributors)
 - [License & Copyright](#license--copyright)
+
+## Get Involved
+
+We’d love your help on improving this project! If you are interested in getting involved…
+
+* Chat with us on [Slack (https://archivers.slack.com)](https://archivers.slack.com)
+    * You can sign up for an account at https://archivers-slack.herokuapp.com/
+    * Join us in the `#webmonitoring` channel.
+* Attend a software development call.
+    * [Join our call](https://edgi-video-call-landing-page.herokuapp.com/https://zoom.us/j/187414228), every other Wednesday at 12pm ET.
+    * Zoom Meeting account is optional. See above link for details.
+    * We keep [notes](https://drive.google.com/drive/u/0/folders/0BxkWFSoyVYI3YVZXY1JxVllFVkU) for all meetings.
+* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
+* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
 
 
 ## Project Structure
@@ -45,22 +59,6 @@ The technical tooling for Web Monitoring is broken up into several repositories,
 | [web-monitoring-ops](https://github.com/edgi-govdata-archiving/web-monitoring-ops) | Server configuration and other deployment information for managing EDGI’s live instance of all these tools. | Kubernetes, Bash, AWS |
 
 For more on how all these parts fit together, see [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/ARCHITECTURE.md).
-
-
-## Get Involved
-
-We’d love your help on improving this project! If you are interested in getting involved…
-
-* Chat with us on [Slack (https://archivers.slack.com)](https://archivers.slack.com)
-    * You can sign up for an account at https://archivers-slack.herokuapp.com/
-    * Join us in the `#webmonitoring` channel.
-* Attend a software development call.
-    * [Join our call](https://edgi-video-call-landing-page.herokuapp.com/https://zoom.us/j/187414228), every other Wednesday at 12pm ET.
-    * Zoom Meeting account is optional. See above link for details.
-    * We keep [notes](https://drive.google.com/drive/u/0/folders/0BxkWFSoyVYI3YVZXY1JxVllFVkU) for all meetings.
-* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
-* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
-
 
 ## Project Overview
 
