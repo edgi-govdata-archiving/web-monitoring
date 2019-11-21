@@ -37,8 +37,19 @@ We’d love your help on improving this project! If you are interested in gettin
 * Chat with us on [Slack (https://archivers.slack.com)](https://archivers.slack.com)
     * You can sign up for an account at https://archivers-slack.herokuapp.com/
     * Join us in the `#webmonitoring` channel.
-* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
-* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
+* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md)
+
+This project is two-part! We rely both on **open source code contributors** (building this tool) and on **volunteer analysts** who use the tool to identify and characterize changes to government websites.
+
+### Get involved as an analyst
+* Read through the [Project Overview](#project-overview) and especially the section on "meaningful changes" to get a better idea of the work
+* Contact us either over Slack or at edgi.websitemonitoring@protonmail.com to ask for a quick training
+
+### Get involved as a programmer
+* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md)
+* Take a look through the repos listed in the [Project Structure](#project-structure) section and choose one that feels appropriate to your interests and skillset
+* Try to get the repo running on your machine (and if you have any challenges, please make issues about them!)
+* Find an issue labeled `good-first-issue` and work to resolve it
 
 
 ## Project Structure
