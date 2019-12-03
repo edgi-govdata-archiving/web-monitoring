@@ -54,12 +54,21 @@ We’d love your help on improving this project! If you are interested in gettin
 * Chat with us on [Slack (https://archivers.slack.com)](https://archivers.slack.com)
     * You can sign up for an account at https://archivers-slack.herokuapp.com/
     * Join us in the `#webmonitoring` channel.
-* Attend a software development call.
-    * [Join our call](https://edgi-video-call-landing-page.herokuapp.com/https://zoom.us/j/187414228), every other Wednesday at 12pm ET.
-    * Zoom Meeting account is optional. See above link for details.
-    * We keep [notes](https://drive.google.com/drive/u/0/folders/0BxkWFSoyVYI3YVZXY1JxVllFVkU) for all meetings.
-* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md).
-* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
+* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md)
+
+This project is two-part! We rely both on **open source code contributors** (building this tool) and on **volunteer analysts** who use the tool to identify and characterize changes to government websites.
+
+
+### Get involved as an analyst
+* Read through the [Project Overview](#project-overview) and especially the section on "meaningful changes" to get a better idea of the work
+* Contact us either over Slack or at edgi.websitemonitoring@protonmail.com to ask for a quick training
+
+
+### Get involved as a programmer
+* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md)
+* Take a look through the repos listed in the [Project Structure](#project-structure) section and choose one that feels appropriate to your interests and skillset
+* Try to get the repo running on your machine (and if you have any challenges, please make issues about them!)
+* Find an issue labeled `good-first-issue` and work to resolve it
 
 
 ## Project Overview
@@ -88,6 +97,7 @@ Some examples of **meaningless** changes:
 
 An example of a **meaningful** change: 
 - In February, we noticed a systematic replacement of the word "impact" with the word "effect" on one website. This change is very interesting because while "impact" and "effect" have similar meanings, "impact" is a **stronger** word. So, there is an effort being made to **weaken** the language on existing sites. Our question is in part: what tools would we need in order to have this change **flagged** by our tools and presented to the analyst as **potentially interesting**?
+
 
 ### Sample Data
 
