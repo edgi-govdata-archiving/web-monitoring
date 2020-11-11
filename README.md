@@ -40,9 +40,11 @@ The technical tooling for Web Monitoring is broken up into several repositories,
 | [web-monitoring](https://github.com/edgi-govdata-archiving/web-monitoring) | **(This Repo!)** Project-wide documentation and issue tracking. | Markdown |
 | [web-monitoring-db](https://github.com/edgi-govdata-archiving/web-monitoring-db) | A database and API that stores metadata about the pages, versions, changes we track, as well as human annotations about those changes. | Ruby, Rails, Postgresql |
 | [web-monitoring-ui](https://github.com/edgi-govdata-archiving/web-monitoring-ui) | A web-based UI (built in React) that shows diffs between different versions of the pages we track. It’s built on the API provided by web-monitoring-db. | JavaScript, React |
-| [web-monitoring-processing](https://github.com/edgi-govdata-archiving/web-monitoring-processing) | A suite of Python tools for diffing web pages in a variety of ways and for interfacing with external services like [the Internet Archive](https://archive.org). | Python, Tornado |
+| [web-monitoring-processing](https://github.com/edgi-govdata-archiving/web-monitoring-processing) | Python-based tools for importing data and for extracting and analyzing data in our database of monitored pages and changes. | Python |
+| [web-monitoring-diff](https://github.com/edgi-govdata-archiving/web-monitoring-diff) | Algorithms for diffing web pages in a variety of ways and a web server for providing those diffs via an HTTP API. | Python, Tornado |
 | [web-monitoring-versionista-scraper](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) | A set of Node.js scripts that extract data from Versionista and load it into web-monitoring-db. It also generates the CSV files that analysts currently use to manage their work on a weekly basis. | Node.js |
 | [web-monitoring-ops](https://github.com/edgi-govdata-archiving/web-monitoring-ops) | Server configuration and other deployment information for managing EDGI’s live instance of all these tools. | Kubernetes, Bash, AWS |
+| [wayback](https://github.com/edgi-govdata-archiving/wayback) | A Python API to the [Internet Archive’s Wayback Machine](https://web.archive.org/). It gives you tools to search for and load mementos (historical copies of web pages). | Python |
 
 For more on how all these parts fit together, see [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/ARCHITECTURE.md).
 
@@ -170,7 +172,7 @@ Finally, we want to give a huge thanks to partner organizations that have helped
 
 ## License & Copyright
 
-Copyright (C) 2017-2019 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation in this repository is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
+Copyright (C) 2017-2020 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation in this repository is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
 
 Software code in other Web Monitoring repositories is generally licensed under the GPL v3 license, but make sure to check each repository’s README for specifics.
 
