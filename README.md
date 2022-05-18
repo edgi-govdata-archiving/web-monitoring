@@ -2,7 +2,7 @@
 
 # EDGI: Web Monitoring Project
 
-[**Website Monitoring**][webmon] is an [EDGI][edgi] project building tools and community around monitoring changes to government websites, both environment-related and otherwise. It includes technical tools for:
+As part of [EDGI's][edgi] [Website Governance Project][webgov] this repository contains tools for monitoring changes to government websites, both environment-related and otherwise. It includes technical tools for:
 
 - Loading, storing, and analyzing historical snapshots of web pages
 - Providing an API for retrieving and updating data about those snapshots
@@ -16,7 +16,7 @@ This project and its associated efforts are already monitoring tens of thousands
 **For a combined view of all issues and status, check [the project board][project_board].** This [repository][repo] is for project-wide documentation and [issues][issues].
 
   [edgi]: https://envirodatagov.org/
-  [webmon]: https://envirodatagov.org/website-monitoring/ 
+  [webgov]: https://envirodatagov.org/website-governance/
   [article_energykids]: https://www.theatlantic.com/science/archive/2017/02/energy-kids/516978/
   [article_termanalysis]: https://www.vice.com/en_ca/article/kzmmwe/under-trump-26-of-climate-change-references-have-vanished-from-gov-sites
   [repo]: https://github.com/edgi-govdata-archiving/web-monitoring
