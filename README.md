@@ -1,4 +1,4 @@
-[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md) &nbsp;[![Project Status Board](https://img.shields.io/badge/✔-Project%20Status%20Board-green.svg?style=flat)](https://github.com/orgs/edgi-govdata-archiving/projects/4)
+[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md) &nbsp;[![Project Status Board](https://img.shields.io/badge/✔-Project%20Status%20Board-green.svg?style=flat)](https://github.com/orgs/edgi-govdata-archiving/projects/4)
 
 
 > [!WARNING]\
@@ -57,7 +57,7 @@ The technical tooling for Web Monitoring is broken up into several repositories,
 | [web-monitoring-ops](https://github.com/edgi-govdata-archiving/web-monitoring-ops) | Server configuration and other deployment information for managing EDGI’s live instance of all these tools. | Kubernetes, Bash, AWS |
 | [wayback](https://github.com/edgi-govdata-archiving/wayback) | A Python API to the [Internet Archive’s Wayback Machine](https://web.archive.org/). It gives you tools to search for and load mementos (historical copies of web pages). | Python |
 
-For more on how all these parts fit together, see [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/ARCHITECTURE.md).
+For more on how all these parts fit together, see [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/ARCHITECTURE.md).
 
 
 ## Get Involved
@@ -67,7 +67,7 @@ We’d love your help on improving this project! If you are interested in gettin
 * Chat with us on [Slack (https://archivers.slack.com)](https://archivers.slack.com)
     * You can sign up for an account at https://archivers-slack.herokuapp.com/
     * Join us in the `#webmonitoring` channel.
-* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md)
+* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md)
 
 This project is two-part! We rely both on **open source code contributors** (building this tool) and on **volunteer analysts** who use the tool to identify and characterize changes to government websites.
 
@@ -78,7 +78,7 @@ This project is two-part! We rely both on **open source code contributors** (bui
 
 
 ### Get involved as a programmer
-* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/CONTRIBUTING.md)
+* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/CONTRIBUTING.md)
 * Take a look through the repos listed in the [Project Structure](#project-structure) section and choose one that feels appropriate to your interests and skillset
 * Try to get the repo running on your machine (and if you have any challenges, please make issues about them!)
 * Find an issue labeled `good-first-issue` and work to resolve it
@@ -119,7 +119,7 @@ The [`example-data`](./example-data) folder contains examples of website changes
 
 ## Code of Conduct
 
-This repository falls under EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
+This repository falls under EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md).
 
 
 ## Contributors
@@ -183,7 +183,7 @@ Finally, we want to give a huge thanks to partner organizations that have helped
 
 ## License & Copyright
 
-Copyright (C) 2017-2020 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation in this repository is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/master/LICENSE) file for details.
+Copyright (C) 2017-2020 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation in this repository is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/LICENSE) file for details.
 
 Software code in other Web Monitoring repositories is generally licensed under the GPL v3 license, but make sure to check each repository’s README for specifics.
 
