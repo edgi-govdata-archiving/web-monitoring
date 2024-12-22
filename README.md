@@ -1,4 +1,4 @@
-[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md) &nbsp;[![Project Status Board](https://img.shields.io/badge/✔-Project%20Status%20Board-green.svg?style=flat)](https://github.com/orgs/edgi-govdata-archiving/projects/4)
+[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md) &nbsp;[![Project Status Board](https://img.shields.io/badge/✔-Project%20Status%20Board-green.svg?style=flat)](https://github.com/orgs/edgi-govdata-archiving/projects/4)
 
 
 > [!WARNING]\
@@ -67,7 +67,7 @@ We’d love your help on improving this project! If you are interested in gettin
 * Chat with us on [Slack (https://archivers.slack.com)](https://archivers.slack.com)
     * You can sign up for an account at https://archivers-slack.herokuapp.com/
     * Join us in the `#webmonitoring` channel.
-* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md)
+* Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md)
 
 This project is two-part! We rely both on **open source code contributors** (building this tool) and on **volunteer analysts** who use the tool to identify and characterize changes to government websites.
 
@@ -119,7 +119,7 @@ The [`example-data`](./example-data) folder contains examples of website changes
 
 ## Code of Conduct
 
-This repository falls under EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/master/CONDUCT.md).
+This repository falls under EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md).
 
 
 ## Contributors
