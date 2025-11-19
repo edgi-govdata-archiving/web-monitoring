@@ -1,4 +1,4 @@
-[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md) &nbsp;[![Project Status Board](https://img.shields.io/badge/✔-Project%20Status%20Board-green.svg?style=flat)](https://github.com/orgs/edgi-govdata-archiving/projects/32)
+[![Code of Conduct](https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg?style=flat)](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md) &nbsp;[![Project Status Board](https://img.shields.io/badge/✔-Project%20Status%20Board-green.svg?style=flat)][project_board]
 
 
 # EDGI: Web Monitoring Project
@@ -22,7 +22,7 @@ This project and its associated efforts are already monitoring tens of thousands
   [article_termanalysis]: https://www.vice.com/en_ca/article/kzmmwe/under-trump-26-of-climate-change-references-have-vanished-from-gov-sites
   [repo]: https://github.com/edgi-govdata-archiving/web-monitoring
   [issues]: https://github.com/edgi-govdata-archiving/web-monitoring/issues
-  [project_board]: https://github.com/orgs/edgi-govdata-archiving/projects/4
+  [project_board]: https://github.com/orgs/edgi-govdata-archiving/projects/32
 
 - [Project Structure](#project-structure)
 - [Get Involved](#get-involved)
