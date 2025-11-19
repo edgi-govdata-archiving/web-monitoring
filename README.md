@@ -3,18 +3,16 @@
 
 # EDGI: Web Monitoring Project
 
-As part of [EDGI's][edgi] [Website Governance Project][webgov] this repository contains tools for monitoring changes to government websites, both environment-related and otherwise. It includes technical tools for:
+This repository is the home of a suite of tools [EDGI's][edgi] [Website Governance Project][webgov] uses to monitor changes to government websites, both environment-related and otherwise. EDGI uses these tools to publish reports that are written about in major publications such as [The Atlantic][article_energykids] or [Vice][article_termanalysis]. Teams at other organizations use parts of this project for similar purposes or to provide comparisons between different versions of public web pages.
 
-- Loading, storing, and analyzing historical snapshots of web pages
-- Providing an API for retrieving and updating data about those snapshots
-- A website for visualizing and browsing changes between those snapshots
-- Tools for managing the workflow of a team of human analysts using the above tools to track and publicize information about meaningful changes to government websites.
+While there are a wide variety of commercial services for monitoring web pages, none of them worked well for EDGI at the scale of tracking thousands or tens of thousands of pages, which is what this project focuses on. These tools perform tasks like:
 
-EDGI uses these tools to publish reports that are written about in major publications such as [The Atlantic][article_energykids] or [Vice][article_termanalysis]. Teams at other organizations use parts of this project for similar purposes or to provide comparisons between different versions of public web pages.
+- Loading, storing, and analyzing historical snapshots of web pages.
+- Providing an API for retrieving and updating data about those snapshots.
+- A website for visualizing and browsing changes between those snapshots.
+- Organizing the workflow and processes of a team of human analysts who use the above tools to track and publicize information about meaningful changes to government websites.
 
-This project and its associated efforts are already monitoring tens of thousands of government web pages. But we aspire for larger impact, eventually monitoring tens of millions or more. Currently, there is a lot of manual labor that goes into reviewing all changes, regardless of whether they are meaningful or not. Any system will need to emphasize usability of the UI and efficiency of computational resources.
-
-**For a combined view of all issues and status, check [the project board][project_board].** This [repository][repo] is for project-wide documentation and [issues][issues].
+ℹ️ The project is broken up into a variety of smaller tools in different repositories (see [“project structure”](#project-structure)). **For a combined view of all issues and status, check [the project board][project_board].** This [repository][repo] is for project-wide documentation and [issues][issues].
 
   [edgi]: https://envirodatagov.org/
   [webgov]: https://envirodatagov.org/website-governance/
@@ -55,23 +53,24 @@ For more on how all these parts fit together, see [ARCHITECTURE.md](https://gith
 
 We’d love your help on improving this project! If you are interested in getting involved…
 
-* If you are focused on the software, dive right into the issues on any of the Web Monitoring projects (see above).
-* Join EDGI by filling out the volunteer form at http://envirodatagov.org/volunteer/. As amember, you can be more involved in our overall process or contribute to work beyond just the code.
 * Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md)
+* Join EDGI by filling out the volunteer form at http://envirodatagov.org/volunteer/. As a member, you can be more involved in our overall process or contribute to work beyond just the code.
 
 This project is two-part! We rely both on **open source code contributors** (building this tool) and on **volunteer analysts** who use the tool to identify and characterize changes to government websites.
 
 
 ### Get involved as an analyst
-* Read through the [Project Overview](#project-overview) and especially the section on "meaningful changes" to get a better idea of the work
+
+* Read through the [Project Overview](#project-overview) and especially the section on "meaningful changes" to get a better idea of the work.
 * Fill out the volunteer form at http://envirodatagov.org/volunteer/.
 
 
 ### Get involved as a programmer
-* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/CONTRIBUTING.md)
-* Take a look through the repos listed in the [Project Structure](#project-structure) section and choose one that feels appropriate to your interests and skillset
-* Try to get a repo running on your machine (and if you have any challenges, please make issues about them!)
-* Find an issue labeled `good-first-issue` and work to resolve it
+
+* Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/CONTRIBUTING.md).
+* Take a look through the repos listed in the [Project Structure](#project-structure) section and choose one that feels appropriate to your interests and skillset.
+* Try to get a repo running on your machine (and if you have any challenges, please make issues about them!).
+* Find an issue labeled `good-first-issue` and work to resolve it.
 
 
 ## Project Overview
