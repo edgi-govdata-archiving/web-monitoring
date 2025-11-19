@@ -47,7 +47,6 @@ The technical tooling for Web Monitoring is broken up into several repositories,
 | [web-monitoring-crawler](https://github.com/edgi-govdata-archiving/web-monitoring-crawler) | Captures copies of pages that EDGI monitors and stores them in web-monitoring-db and the Internet Archive. | Python, Docker |
 | [web-monitoring-ops](https://github.com/edgi-govdata-archiving/web-monitoring-ops) | Server configuration and other deployment information for managing EDGI’s live instance of all these tools. | Kubernetes, Bash, AWS |
 | [wayback](https://github.com/edgi-govdata-archiving/wayback) | A Python API to the [Internet Archive’s Wayback Machine](https://web.archive.org/). It gives you tools to search for and load mementos (historical copies of web pages). | Python |
-| [web-monitoring-versionista-scraper](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) | ⚠️ **Deprecated.** Node.js scripts that extract data from [Versionista](https://versionista.com/) and load it into web-monitoring-db. It also generated the CSV files that analysts used to manage their work. | Node.js |
 
 For more on how all these parts fit together, see [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/ARCHITECTURE.md).
 
