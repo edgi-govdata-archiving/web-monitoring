@@ -56,9 +56,8 @@ For more on how all these parts fit together, see [ARCHITECTURE.md](https://gith
 
 We’d love your help on improving this project! If you are interested in getting involved…
 
-* Chat with us on [Slack (https://archivers.slack.com)](https://archivers.slack.com)
-    * You can sign up for an account at https://archivers-slack.herokuapp.com/
-    * Join us in the `#webmonitoring` channel.
+* If you are focused on the software, dive right into the issues on any of the Web Monitoring projects (see above).
+* Join EDGI by filling out the volunteer form at http://envirodatagov.org/volunteer/. As amember, you can be more involved in our overall process or contribute to work beyond just the code.
 * Please follow EDGI's [Code of Conduct](https://github.com/edgi-govdata-archiving/overview/blob/main/CONDUCT.md)
 
 This project is two-part! We rely both on **open source code contributors** (building this tool) and on **volunteer analysts** who use the tool to identify and characterize changes to government websites.
@@ -66,13 +65,13 @@ This project is two-part! We rely both on **open source code contributors** (bui
 
 ### Get involved as an analyst
 * Read through the [Project Overview](#project-overview) and especially the section on "meaningful changes" to get a better idea of the work
-* Contact us either over Slack or at edgi.websitemonitoring@protonmail.com to ask for a quick training
+* Fill out the volunteer form at http://envirodatagov.org/volunteer/.
 
 
 ### Get involved as a programmer
 * Be sure to check our [contributor guidelines](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/CONTRIBUTING.md)
 * Take a look through the repos listed in the [Project Structure](#project-structure) section and choose one that feels appropriate to your interests and skillset
-* Try to get the repo running on your machine (and if you have any challenges, please make issues about them!)
+* Try to get a repo running on your machine (and if you have any challenges, please make issues about them!)
 * Find an issue labeled `good-first-issue` and work to resolve it
 
 
