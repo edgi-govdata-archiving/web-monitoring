@@ -43,9 +43,11 @@ The technical tooling for Web Monitoring is broken up into several repositories,
 | [web-monitoring-ui](https://github.com/edgi-govdata-archiving/web-monitoring-ui) | A web-based UI (built in React) that shows diffs between different versions of the pages we track. It’s built on the API provided by web-monitoring-db. | JavaScript, React |
 | [web-monitoring-processing](https://github.com/edgi-govdata-archiving/web-monitoring-processing) | Python-based tools for importing data and for extracting and analyzing data in our database of monitored pages and changes. | Python |
 | [web-monitoring-diff](https://github.com/edgi-govdata-archiving/web-monitoring-diff) | Algorithms for diffing web pages in a variety of ways and a web server for providing those diffs via an HTTP API. | Python, Tornado |
-| [web-monitoring-versionista-scraper](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) | A set of Node.js scripts that extract data from Versionista and load it into web-monitoring-db. It also generates the CSV files that analysts currently use to manage their work on a weekly basis. | Node.js |
+| [web-monitoring-task-sheets](https://github.com/edgi-govdata-archiving/web-monitoring-task-sheets) | Analyzes changes stored in -db and generates filtered, prioritized spreadsheets human analysts use to plan their work. | Python |
+| [web-monitoring-crawler](https://github.com/edgi-govdata-archiving/web-monitoring-crawler) | Captures copies of pages that EDGI monitors and stores them in web-monitoring-db and the Internet Archive. | Python, Docker |
 | [web-monitoring-ops](https://github.com/edgi-govdata-archiving/web-monitoring-ops) | Server configuration and other deployment information for managing EDGI’s live instance of all these tools. | Kubernetes, Bash, AWS |
 | [wayback](https://github.com/edgi-govdata-archiving/wayback) | A Python API to the [Internet Archive’s Wayback Machine](https://web.archive.org/). It gives you tools to search for and load mementos (historical copies of web pages). | Python |
+| [web-monitoring-versionista-scraper](https://github.com/edgi-govdata-archiving/web-monitoring-versionista-scraper) | ⚠️ **Deprecated.** Node.js scripts that extract data from [Versionista](https://versionista.com/) and load it into web-monitoring-db. It also generated the CSV files that analysts used to manage their work. | Node.js |
 
 For more on how all these parts fit together, see [ARCHITECTURE.md](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/ARCHITECTURE.md).
 
