@@ -170,6 +170,17 @@ Finally, we want to give a huge thanks to partner organizations that have helped
 - [The Internet Archive](https://archive.org/)
 
 
+## Similar Projects
+
+If you are looking for other web monitoring tools, here are some similar projects you may be interested in:
+
+- [Klaxon](https://www.newsklaxon.org/) - Open source web page change monitoring tool developed by The Marshall Project, designed for newsrooms to track website updates.
+- [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) - Self-hosted open source web change detection and monitoring tool with support for multiple notification methods and custom check rules.
+- [Visualping](https://visualping.io/) - Web page monitoring service that provides visual page change comparison, supporting bulk monitoring and API access.
+- [Versionista](https://versionista.com/) - Web page change tracking tool commonly used for compliance monitoring of government and corporate websites, providing detailed change reports.
+- [PageProbe](https://addons.mozilla.org/en-US/firefox/addon/pageprobe/) - Browser extension for monitoring changes to specific parts of web pages, supporting custom selectors and notifications.
+
+
 ## License & Copyright
 
 Copyright (C) 2017-2025 Environmental Data and Governance Initiative (EDGI) <br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a> Web Monitoring documentation in this repository is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. See the [`LICENSE`](https://github.com/edgi-govdata-archiving/web-monitoring/blob/main/LICENSE) file for details.
