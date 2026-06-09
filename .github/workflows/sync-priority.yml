@@ -1,0 +1,48 @@
+name: Sync Issue Priority Field and Labels
+
+on:
+  issues:
+    types: [opened, edited, labeled, unlabeled, reopened]
+  issue_comment:
+    types: [created]
+  pull_request:
+    types: [opened, edited, labeled, unlabeled, reopened]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run in dry-run mode (no changes will be written)"
+        type: boolean
+        required: false
+        default: false
+  schedule:
+    # Run daily at 06:00 UTC to catch any drift
+    - cron: "0 6 * * *"
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  sync-priority:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install PyGithub requests
+
+      - name: Run priority sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python .github/scripts/sync_priority.py
+        # Pass dry_run flag from workflow_dispatch input when triggered manually
+        # Scheduled/event runs default to dry_run=false (real sync)
+        ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '--dry-run' || '' }}
