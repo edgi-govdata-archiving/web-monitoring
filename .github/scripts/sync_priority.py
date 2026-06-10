@@ -2,45 +2,33 @@
 """
 Sync GitHub Issue Priority Field and Labels
 
-Bidirectional synchronization between:
-  - GitHub's "Priority" issue field (a project field)
-  - Priority labels (priority-★★★, priority-★★☆, priority-★☆☆)
+Bidirectional sync between the "Priority" issue field (GitHub's new issue
+fields feature) and priority labels, using the REST API.
 
 Mapping:
-  Urgent  → priority-★★★
-  High    → priority-★★☆
-  Medium  → priority-★☆☆
-  Low     → (no priority label)
+  Urgent  -> priority-★★★
+  High    -> priority-★★☆
+  Medium  -> priority-★☆☆
+  Low     -> (no priority label)
 
-Triggers:
-  - Label event → update the Priority field to match
-  - Scheduled run → update labels to match the Priority field
-  - Other events → full bidirectional sync (field wins on conflict)
-
-Requirements:
-  - GITHUB_TOKEN with issues:write and pull_requests:write permissions
-  - The repository must have a "Priority" field configured on issues
+API docs: https://docs.github.com/en/rest/issues/issue-field-values
 """
 
+from __future__ import annotations
+
 import argparse
+import json
 import os
 import sys
 import time
-from collections.abc import Iterable
 from datetime import datetime, timezone
 from typing import Any
 
 import requests
-from github import Auth, Github, GithubException
 
-
-# ---------------------------------------------------------------------------
-# Priority mapping
-# ---------------------------------------------------------------------------
-
+API_BASE = "https://api.github.com"
 PRIORITY_FIELD_NAME = "Priority"
 
-# Field value → label(s)
 PRIORITY_TO_LABELS: dict[str, list[str]] = {
     "Urgent": ["priority-★★★"],
     "High": ["priority-★★☆"],
@@ -48,656 +36,310 @@ PRIORITY_TO_LABELS: dict[str, list[str]] = {
     "Low": [],
 }
 
-# Label → field value (reverse mapping)
 LABEL_TO_PRIORITY: dict[str, str] = {}
-for _priority, _labels in PRIORITY_TO_LABELS.items():
-    for _label in _labels:
-        LABEL_TO_PRIORITY[_label] = _priority
+for _pri, _labels in PRIORITY_TO_LABELS.items():
+    for _lbl in _labels:
+        LABEL_TO_PRIORITY[_lbl] = _pri
 
-ALL_PRIORITY_LABELS: set[str] = {
-    label for labels in PRIORITY_TO_LABELS.values() for label in labels
-}
+ALL_PRIORITY_LABELS: set[str] = {lbl for labels in PRIORITY_TO_LABELS.values() for lbl in labels}
 
-# GraphQL fragments used for project field operations
-GET_PROJECT_FIELDS_QUERY = """
-query($owner: String!, $repo: String!, $issueNumber: Int!) {
-  repository(owner: $owner, name: $repo) {
-    issue(number: $issueNumber) {
-      id
-      projectItems(first: 20) {
-        nodes {
-          id
-          project {
-            id
-            title
-          }
-          fieldValues(first: 20) {
-            nodes {
-              ... on ProjectV2ItemFieldSingleSelectValue {
-                field {
-                  ... on ProjectV2SingleSelectField {
-                    id
-                    name
-                    options {
-                      id
-                      name
-                    }
-                  }
-                }
-                name
-                optionId
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+LABEL_COLORS: dict[str, str] = {
+    "priority-★★★": "B60205",
+    "priority-★★☆": "FBCA04",
+    "priority-★☆☆": "0E8A16",
 }
-"""
-
-UPDATE_FIELD_VALUE_MUTATION = """
-mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $valueId: String!) {
-  updateProjectV2ItemFieldValue(
-    input: {
-      projectId: $projectId
-      itemId: $itemId
-      fieldId: $fieldId
-      value: { singleSelectOptionId: $valueId }
-    }
-  ) {
-    clientMutationId
-  }
-}
-"""
-
-CLEAR_FIELD_VALUE_MUTATION = """
-mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!) {
-  clearProjectV2ItemFieldValue(
-    input: {
-      projectId: $projectId
-      itemId: $itemId
-      fieldId: $fieldId
-    }
-  ) {
-    clientMutationId
-  }
-}
-"""
 
 
 # ---------------------------------------------------------------------------
-# GraphQL helpers
+# GitHub REST helpers
 # ---------------------------------------------------------------------------
 
-def _graphql_request(
-    token: str, query: str, variables: dict[str, Any]
-) -> dict[str, Any]:
-    """Make a GitHub GraphQL API request with rate-limit handling."""
-    headers = {
+def _headers(token: str) -> dict[str, str]:
+    return {
         "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
     }
-    response = requests.post(
-        "https://api.github.com/graphql",
-        json={"query": query, "variables": variables},
-        headers=headers,
-        timeout=30,
-    )
-    _check_rate_limit(response)
-    response.raise_for_status()
-    body = response.json()
-    if "errors" in body:
-        raise RuntimeError(f"GraphQL errors: {body['errors']}")
-    return body["data"]
 
 
 def _check_rate_limit(response: requests.Response) -> None:
-    """Check rate-limit headers and sleep if depleted."""
     remaining = response.headers.get("X-RateLimit-Remaining")
     reset_at = response.headers.get("X-RateLimit-Reset")
     if remaining is not None and int(remaining) == 0 and reset_at is not None:
         reset_time = datetime.fromtimestamp(int(reset_at), tz=timezone.utc)
         wait = (reset_time - datetime.now(tz=timezone.utc)).total_seconds() + 1
         if wait > 0:
-            print(f"  ⏳ Rate limit reached. Sleeping {wait:.0f}s...")
+            print(f"  Rate limit reached. Sleeping {wait:.0f}s...")
             time.sleep(wait)
 
 
+def _get(token: str, path: str) -> requests.Response:
+    resp = requests.get(f"{API_BASE}{path}", headers=_headers(token), timeout=30)
+    _check_rate_limit(resp)
+    resp.raise_for_status()
+    return resp
+
+
+def _post(token: str, path: str, body: dict | None = None) -> requests.Response:
+    resp = requests.post(f"{API_BASE}{path}", headers=_headers(token), json=body, timeout=30)
+    _check_rate_limit(resp)
+    resp.raise_for_status()
+    return resp
+
+
+def _delete(token: str, path: str) -> requests.Response:
+    resp = requests.delete(f"{API_BASE}{path}", headers=_headers(token), timeout=30)
+    _check_rate_limit(resp)
+    resp.raise_for_status()
+    return resp
+
+
+def _paginate(token: str, path: str, per_page: int = 100) -> list[dict]:
+    """Collect all pages from a paginated REST endpoint."""
+    items: list[dict] = []
+    page = 1
+    while True:
+        sep = "&" if "?" in path else "?"
+        resp = _get(token, f"{path}{sep}per_page={per_page}&page={page}")
+        data = resp.json()
+        if isinstance(data, list):
+            items.extend(data)
+        else:
+            return [data]  # single object
+        if len(data) < per_page:
+            break
+        page += 1
+    return items
+
+
 # ---------------------------------------------------------------------------
-# Priority field discovery & helpers
+# Issue field helpers (REST API, not GraphQL/Projects)
 # ---------------------------------------------------------------------------
 
-def _find_priority_field(
-    token: str, owner: str, repo: str
-) -> tuple[str | None, str | None, dict[str, str] | None]:
-    """
-    Discover the V2 project field ID and the Priority single-select field ID.
-
-    Uses a recent issue (if any exist) or walks the repo's projects.
-
-    Returns (project_node_id, field_id, option_name_to_id) or (None, None, None).
-    """
-    # Strategy: use the repository's projectV2 connection to find a project
-    # with a "Priority" field, then cache its ids.
-    query = """
-    query($owner: String!, $repo: String!) {
-      repository(owner: $owner, name: $repo) {
-        projectsV2(first: 10) {
-          nodes {
-            id
-            title
-            fields(first: 20) {
-              nodes {
-                ... on ProjectV2SingleSelectField {
-                  id
-                  name
-                  options {
-                    id
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    """
-    data = _graphql_request(token, query, {"owner": owner, "repo": repo})
-    projects = data.get("repository", {}).get("projectsV2", {}).get("nodes", []) or []
-
-    for project in projects:
-        for field in project.get("fields", {}).get("nodes", []) or []:
-            if (
-                field
-                and field.get("name") == PRIORITY_FIELD_NAME
-                and field.get("options")
-            ):
-                options = {
-                    opt["name"]: opt["id"] for opt in field["options"] if opt.get("name")
-                }
-                return project["id"], field["id"], options
-
-    return None, None, None
+def _get_issue_field_values(token: str, owner: str, repo: str, issue_number: int) -> list[dict]:
+    """Get all issue field values for an issue."""
+    path = f"/repos/{owner}/{repo}/issues/{issue_number}/issue-field-values"
+    return _paginate(token, path)
 
 
-def _get_issue_project_item(
-    token: str,
-    owner: str,
-    repo: str,
-    issue_number: int,
-    project_node_id: str,
-) -> tuple[str | None, str | None, dict[str, str] | None]:
-    """Get the project item ID and current priority value for a specific issue."""
-    query = """
-    query($owner: String!, $repo: String!, $issueNumber: Int!) {
-      repository(owner: $owner, name: $repo) {
-        issue(number: $issueNumber) {
-          id
-          projectItems(first: 20) {
-            nodes {
-              id
-              project {
-                id
-              }
-              fieldValues(first: 20) {
-                nodes {
-                  ... on ProjectV2ItemFieldSingleSelectValue {
-                    field {
-                      ... on ProjectV2SingleSelectField {
-                        name
-                      }
-                    }
-                    name
-                    optionId
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    """
-    data = _graphql_request(
-        token, query,
-        {"owner": owner, "repo": repo, "issueNumber": issue_number},
+def _set_issue_field_value(
+    token: str, owner: str, repo: str, issue_number: int,
+    field_id: int, value: str, dry_run: bool = False,
+) -> None:
+    """Set a single issue field value on an issue."""
+    if dry_run:
+        print(f"    [dry-run] Would set field {field_id} to '{value}'")
+        return
+    _post(
+        token,
+        f"/repos/{owner}/{repo}/issues/{issue_number}/issue-field-values",
+        {"issue_field_id": field_id, "value": value},
     )
-    issue = data.get("repository", {}).get("issue")
-    if not issue:
-        return None, None, None
 
-    for item in (issue.get("projectItems", {}).get("nodes", []) or []):
-        if not item:
+
+def _discover_priority_field_id(token: str, owner: str, repo: str) -> int | None:
+    """Find the issue_field_id for the 'Priority' field by inspecting open issues."""
+    issues = _paginate(token, f"/repos/{owner}/{repo}/issues?state=all", per_page=30)
+    for issue in issues:
+        try:
+            fields = _get_issue_field_values(token, owner, repo, issue["number"])
+        except Exception:
             continue
-        if item.get("project", {}).get("id") == project_node_id:
-            # Find the priority field value
-            priority_value = None
-            priority_option_id = None
-            for fv in item.get("fieldValues", {}).get("nodes", []) or []:
-                if (
-                    fv
-                    and fv.get("field", {}).get("name") == PRIORITY_FIELD_NAME
-                ):
-                    priority_value = fv.get("name")
-                    priority_option_id = fv.get("optionId")
-            return item["id"], priority_value, priority_option_id
-
-    return None, None, None
+        for fv in fields:
+            name = fv.get("name") or fv.get("field_name") or ""
+            if name.lower() == PRIORITY_FIELD_NAME.lower():
+                return fv["issue_field_id"]
+    return None
 
 
-def _set_project_field(
-    token: str,
-    project_id: str,
-    item_id: str,
-    field_id: str,
-    option_id: str,
-    dry_run: bool = False,
-) -> None:
-    """Set a project item's single-select field to a specific option."""
-    if dry_run:
-        print(f"  [dry-run] Would set field {field_id} to option {option_id}")
-        return
+# ---------------------------------------------------------------------------
+# Label helpers
+# ---------------------------------------------------------------------------
 
-    _graphql_request(
-        token,
-        UPDATE_FIELD_VALUE_MUTATION,
-        {
-            "projectId": project_id,
-            "itemId": item_id,
-            "fieldId": field_id,
-            "valueId": option_id,
-        },
-    )
+def _get_labels(token: str, owner: str, repo: str, issue_number: int) -> list[str]:
+    """Return label names for an issue."""
+    labels = _paginate(token, f"/repos/{owner}/{repo}/issues/{issue_number}/labels")
+    return [lbl["name"] for lbl in labels]
 
 
-def _clear_project_field(
-    token: str,
-    project_id: str,
-    item_id: str,
-    field_id: str,
-    dry_run: bool = False,
-) -> None:
-    """Clear a project item's single-select field value."""
-    if dry_run:
-        print(f"  [dry-run] Would clear field {field_id}")
-        return
+def _add_label(token: str, owner: str, repo: str, issue_number: int,
+               label: str, dry_run: bool = False) -> None:
+    """Add a label to an issue."""
+    print(f"    Adding label: {label}")
+    if not dry_run:
+        _post(token, f"/repos/{owner}/{repo}/issues/{issue_number}/labels", {"labels": [label]})
 
-    _graphql_request(
-        token,
-        CLEAR_FIELD_VALUE_MUTATION,
-        {
-            "projectId": project_id,
-            "itemId": item_id,
-            "fieldId": field_id,
-        },
-    )
+
+def _remove_label(token: str, owner: str, repo: str, issue_number: int,
+                  label: str, dry_run: bool = False) -> None:
+    """Remove a label from an issue."""
+    print(f"    Removing label: {label}")
+    if not dry_run:
+        _delete(token, f"/repos/{owner}/{repo}/issues/{issue_number}/labels/{label}")
+
+
+def _ensure_labels_exist(token: str, owner: str, repo: str, dry_run: bool = False) -> None:
+    """Create any missing priority labels."""
+    existing = {lbl["name"] for lbl in _paginate(token, f"/repos/{owner}/{repo}/labels")}
+    for label_name in ALL_PRIORITY_LABELS:
+        if label_name not in existing:
+            print(f"  Creating label: {label_name}")
+            if not dry_run:
+                _post(token, f"/repos/{owner}/{repo}/labels", {
+                    "name": label_name,
+                    "color": LABEL_COLORS.get(label_name, "D4C5F9"),
+                })
 
 
 # ---------------------------------------------------------------------------
 # Sync logic
 # ---------------------------------------------------------------------------
 
-def _remove_stale_labels(
-    issue: Any, current_labels: set[str], desired_labels: set[str],
-    dry_run: bool = False,
+def _sync_labels(
+    token: str, owner: str, repo: str, issue_number: int,
+    current_labels: set[str], desired_labels: set[str], dry_run: bool,
 ) -> bool:
-    """Remove priority labels that should not be on the issue. Returns True if changed."""
-    stale_labels = current_labels & ALL_PRIORITY_LABELS - desired_labels
-    if not stale_labels:
-        return False
+    """Add/remove labels to match desired set. Returns True if changed."""
+    changed = False
+    for lbl in sorted(current_labels & ALL_PRIORITY_LABELS - desired_labels):
+        _remove_label(token, owner, repo, issue_number, lbl, dry_run)
+        changed = True
+    for lbl in sorted(desired_labels - current_labels):
+        _add_label(token, owner, repo, issue_number, lbl, dry_run)
+        changed = True
+    return changed
 
-    for label in sorted(stale_labels):
-        print(f"  Removing label: {label}")
-        if not dry_run:
-            try:
-                issue.remove_from_labels(label)
-            except GithubException as exc:
-                print(f"  ⚠ Failed to remove label {label}: {exc}")
+
+def _sync_field(
+    token: str, owner: str, repo: str, issue_number: int,
+    field_id: int, current_value: str | None, desired_value: str | None,
+    dry_run: bool,
+) -> bool:
+    """Update the Priority field if it doesn't match. Returns True if changed."""
+    if current_value == desired_value:
+        return False
+    if desired_value is None:
+        # Can't "clear" a single-select field via REST — skip
+        return False
+    direction = f"{current_value or '(none)'} -> {desired_value}"
+    print(f"  #{issue_number} field: {direction}")
+    _set_issue_field_value(token, owner, repo, issue_number, field_id, desired_value, dry_run)
     return True
 
 
-def _add_missing_labels(
-    issue: Any, current_labels: set[str], desired_labels: set[str],
-    dry_run: bool = False,
-) -> bool:
-    """Add priority labels that should be on the issue. Returns True if changed."""
-    missing_labels = desired_labels - current_labels
-    if not missing_labels:
-        return False
+# ---------------------------------------------------------------------------
+# Main sync functions
+# ---------------------------------------------------------------------------
 
-    for label in sorted(missing_labels):
-        print(f"  Adding label: {label}")
-        if not dry_run:
-            try:
-                issue.add_to_labels(label)
-            except GithubException as exc:
-                print(f"  ⚠ Failed to add label {label}: {exc}")
-    return True
-
-
-def sync_labels_to_field(
-    gh: Github,
-    token: str,
-    owner: str,
-    repo_name: str,
-    project_id: str,
-    field_id: str,
-    option_map: dict[str, str],
-    dry_run: bool = False,
+def sync_full(
+    token: str, owner: str, repo: str, field_id: int, dry_run: bool = False,
 ) -> None:
-    """
-    Sync direction: labels → Priority field.
-
-    For every open issue/PR, if it has a priority label set but the Priority
-    field doesn't match, update the field.
-    """
-    repo = gh.get_repo(f"{owner}/{repo_name}")
-    # Process issues and PRs (GitHub treats PRs as issues with a pull_request)
-    issues = repo.get_issues(state="open")
+    """Bidirectional sync: field wins on conflict, fill in whichever side is missing."""
+    issues = _paginate(token, f"/repos/{owner}/{repo}/issues?state=open")
+    print(f"  Scanning {len(issues)} open issues/PRs...")
 
     for issue in issues:
-        labels = {label.name for label in issue.labels}
+        issue_number = issue["number"]
+        current_labels = set(_get_labels(token, owner, repo, issue_number))
 
-        # Determine what priority field value the labels indicate
-        desired_priority: str | None = None
-        for label_name in labels:
-            if label_name in LABEL_TO_PRIORITY:
-                desired_priority = LABEL_TO_PRIORITY[label_name]
-                break  # First match wins
-
-        if desired_priority is None:
-            continue  # No priority label on this issue
-
-        # Check current field value
-        item_id, current_priority, _ = _get_issue_project_item(
-            token, owner, repo_name, issue.number, project_id
-        )
-        if item_id is None:
-            continue  # Issue not in project
-
-        if current_priority == desired_priority:
-            continue  # Already in sync
-
-        option_id = option_map.get(desired_priority)
-        if option_id is None:
-            print(f"  ⚠ No option ID found for priority '{desired_priority}'")
-            continue
-
-        direction = "→".join(
-            [current_priority or "(none)", desired_priority]
-        )
-        print(f"  #{issue.number} field: {direction}")
-        _set_project_field(token, project_id, item_id, field_id, option_id, dry_run)
-
-
-def sync_field_to_labels(
-    gh: Github,
-    token: str,
-    owner: str,
-    repo_name: str,
-    project_id: str,
-    field_id: str,
-    dry_run: bool = False,
-) -> None:
-    """
-    Sync direction: Priority field → labels.
-
-    For every open issue/PR, if the Priority field is set but its
-    corresponding label(s) are missing (or wrong labels are present),
-    fix the labels.
-    """
-    repo = gh.get_repo(f"{owner}/{repo_name}")
-    issues = repo.get_issues(state="open")
-
-    for issue in issues:
-        item_id, priority_value, _ = _get_issue_project_item(
-            token, owner, repo_name, issue.number, project_id
-        )
-        if item_id is None or priority_value is None:
-            continue  # Issue not in project or no priority set
-
-        desired_labels = set(PRIORITY_TO_LABELS.get(priority_value, []))
-        current_labels = {label.name for label in issue.labels}
-
-        if current_labels & ALL_PRIORITY_LABELS == desired_labels:
-            continue  # Already in sync
-
-        direction = "→".join(
-            [
-                ",".join(sorted(current_labels & ALL_PRIORITY_LABELS)) or "(none)",
-                ",".join(sorted(desired_labels)) or "(none)",
-            ]
-        )
-        print(f"  #{issue.number} labels: {direction}")
-
-        changed = False
-        changed |= _remove_stale_labels(issue, current_labels, desired_labels, dry_run)
-        changed |= _add_missing_labels(issue, current_labels, desired_labels, dry_run)
-        if not changed and dry_run:
-            print("    (labels already in sync)")
-
-
-def sync_bidirectional(
-    gh: Github,
-    token: str,
-    owner: str,
-    repo_name: str,
-    project_id: str,
-    field_id: str,
-    option_map: dict[str, str],
-    dry_run: bool = False,
-) -> None:
-    """
-    Full bidirectional sync (field wins on conflict).
-
-    For every open issue/PR, if either the labels or field are out of
-    sync, bring them into agreement. When both are set but disagree,
-    the Priority field value takes precedence.
-    """
-    repo = gh.get_repo(f"{owner}/{repo_name}")
-    issues = repo.get_issues(state="open")
-
-    for issue in issues:
-        current_labels = {label.name for label in issue.labels}
-
-        # Determine label-implied priority
+        # What priority do the labels imply?
         label_priority: str | None = None
-        for label_name in current_labels:
-            if label_name in LABEL_TO_PRIORITY:
-                label_priority = LABEL_TO_PRIORITY[label_name]
+        for lbl in current_labels:
+            if lbl in LABEL_TO_PRIORITY:
+                label_priority = LABEL_TO_PRIORITY[lbl]
                 break
 
-        # Get field-implied priority
-        item_id, field_priority, field_option_id = _get_issue_project_item(
-            token, owner, repo_name, issue.number, project_id
-        )
+        # What priority does the field say?
+        field_priority: str | None = None
+        try:
+            field_values = _get_issue_field_values(token, owner, repo, issue_number)
+            for fv in field_values:
+                if fv.get("issue_field_id") == field_id:
+                    field_priority = fv.get("value")
+                    break
+        except Exception:
+            continue
 
-        # Case 1: Neither is set → nothing to do
+        # Case: both unset -> skip
         if label_priority is None and field_priority is None:
             continue
 
-        # Case 2: Only field is set → sync labels to match field
+        # Case: only field set -> add labels
         if label_priority is None and field_priority is not None:
-            desired_labels = set(PRIORITY_TO_LABELS.get(field_priority, []))
-            print(f"  #{issue.number} (field-only) → labels: {','.join(sorted(desired_labels)) or '(none)'}")
-            _remove_stale_labels(issue, current_labels, desired_labels, dry_run)
-            _add_missing_labels(issue, current_labels, desired_labels, dry_run)
+            desired = set(PRIORITY_TO_LABELS.get(field_priority, []))
+            print(f"  #{issue_number} (field-only) -> labels: {','.join(sorted(desired)) or '(none)'}")
+            _sync_labels(token, owner, repo, issue_number, current_labels, desired, dry_run)
             continue
 
-        # Case 3: Only labels are set → sync field to match labels
+        # Case: only labels set -> set field
         if label_priority is not None and field_priority is None:
-            option_id = option_map.get(label_priority)
-            if option_id and item_id:
-                direction = "→".join(["(none)", label_priority])
-                print(f"  #{issue.number} field: {direction}")
-                _set_project_field(token, project_id, item_id, field_id, option_id, dry_run)
+            _sync_field(token, owner, repo, issue_number, field_id, None, label_priority, dry_run)
             continue
 
-        # Case 4: Both are set — field wins
+        # Case: both set, field wins
         if label_priority != field_priority and field_priority is not None:
-            desired_labels = set(PRIORITY_TO_LABELS.get(field_priority, []))
-            print(
-                f"  #{issue.number} conflict (field wins): "
-                f"labels {label_priority or '(none)'} → {','.join(sorted(desired_labels)) or '(none)'}"
-            )
-            _remove_stale_labels(issue, current_labels, desired_labels, dry_run)
-            _add_missing_labels(issue, current_labels, desired_labels, dry_run)
+            desired = set(PRIORITY_TO_LABELS.get(field_priority, []))
+            print(f"  #{issue_number} conflict (field wins): labels {label_priority} -> {','.join(sorted(desired)) or '(none)'}")
+            _sync_labels(token, owner, repo, issue_number, current_labels, desired, dry_run)
         elif label_priority == field_priority:
-            # Both agree — ensure labels are exactly right
-            desired_labels = set(PRIORITY_TO_LABELS.get(field_priority, []))
-            if current_labels & ALL_PRIORITY_LABELS != desired_labels:
-                print(f"  #{issue.number} cleanup labels")
-                _remove_stale_labels(issue, current_labels, desired_labels, dry_run)
-                _add_missing_labels(issue, current_labels, desired_labels, dry_run)
+            # Agree — just ensure labels are exact
+            desired = set(PRIORITY_TO_LABELS.get(field_priority, []))
+            if current_labels & ALL_PRIORITY_LABELS != desired:
+                print(f"  #{issue_number} cleanup labels")
+                _sync_labels(token, owner, repo, issue_number, current_labels, desired, dry_run)
 
 
 # ---------------------------------------------------------------------------
-# Ensure priority labels exist in the repository
-# ---------------------------------------------------------------------------
-
-def ensure_labels_exist(gh: Github, owner: str, repo_name: str, dry_run: bool = False) -> None:
-    """Create any missing priority labels in the repository."""
-    repo = gh.get_repo(f"{owner}/{repo_name}")
-    existing_labels = {label.name: label for label in repo.get_labels()}
-
-    # Colors for priority labels
-    COLORS: dict[str, str] = {
-        "priority-★★★": "B60205",  # Red
-        "priority-★★☆": "FBCA04",  # Yellow
-        "priority-★☆☆": "0E8A16",  # Green
-    }
-
-    for label_name in ALL_PRIORITY_LABELS:
-        if label_name not in existing_labels:
-            color = COLORS.get(label_name, "D4C5F9")
-            print(f"  Creating label: {label_name} (color: {color})")
-            if not dry_run:
-                try:
-                    repo.create_label(name=label_name, color=color)
-                except GithubException as exc:
-                    print(f"  ⚠ Failed to create label {label_name}: {exc}")
-
-
-# ---------------------------------------------------------------------------
-# Determine what triggered the run
-# ---------------------------------------------------------------------------
-
-def _get_event_type() -> str:
-    """Return the GitHub event type that triggered this workflow."""
-    return os.environ.get("GITHUB_EVENT_NAME", "schedule")
-
-
-def _get_event_action() -> str:
-    """Return the action sub-type (e.g., 'labeled', 'opened') if available."""
-    event_path = os.environ.get("GITHUB_EVENT_PATH")
-    if not event_path or not os.path.exists(event_path):
-        return ""
-    import json
-    with open(event_path) as f:
-        event = json.load(f)
-    return event.get("action", "")
-
-
-# ---------------------------------------------------------------------------
-# Main
+# Entry point
 # ---------------------------------------------------------------------------
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Sync GitHub issue Priority field and priority labels"
-    )
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        default=False,
-        help="Print what would be changed without making changes",
-    )
+    parser = argparse.ArgumentParser(description="Sync GitHub issue Priority field and labels")
+    parser.add_argument("--dry-run", action="store_true", help="Print changes without making them")
     args = parser.parse_args()
 
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
-        print("❌ GITHUB_TOKEN environment variable is required")
+        print("GITHUB_TOKEN is required", file=sys.stderr)
         sys.exit(1)
 
     repo_full = os.environ.get("GITHUB_REPOSITORY", "")
     if "/" not in repo_full:
-        print(f"❌ Invalid GITHUB_REPOSITORY: {repo_full}")
+        print(f"Invalid GITHUB_REPOSITORY: {repo_full}", file=sys.stderr)
         sys.exit(1)
-    owner, repo_name = repo_full.split("/", 1)
+    owner, repo = repo_full.split("/", 1)
 
-    dry_run = args.dry_run
-    if os.environ.get("DRY_RUN", "").lower() in ("1", "true", "yes"):
-        dry_run = True
+    dry_run = args.dry_run or os.environ.get("DRY_RUN", "").lower() in ("1", "true", "yes")
 
-    event_type = _get_event_type()
-    event_action = _get_event_action()
+    event = os.environ.get("GITHUB_EVENT_NAME", "schedule")
 
-    print(f"🔍 Repo: {owner}/{repo_name}")
-    print(f"📌 Event: {event_type}" + (f" ({event_action})" if event_action else ""))
-    print(f"🧪 Dry run: {dry_run}")
+    print(f"Repo: {owner}/{repo}")
+    print(f"Event: {event}")
+    print(f"Dry run: {dry_run}")
     print()
 
-    # Initialize GitHub clients
-    auth = Auth.Token(token)
-    gh = Github(auth=auth, per_page=100)
+    # Ensure labels exist
+    print("Ensuring priority labels exist...")
+    _ensure_labels_exist(token, owner, repo, dry_run)
+    print()
 
-    try:
-        # Discover the Priority field
-        print("🔎 Discovering Priority project field...")
-        project_id, field_id, option_map = _find_priority_field(token, owner, repo_name)
+    # Discover Priority field
+    print("Discovering Priority issue field...")
+    field_id = _discover_priority_field_id(token, owner, repo)
 
-        if field_id is None:
-            print(
-                "⚠ Could not find a project with a 'Priority' field in this repository.\n"
-                "   No project field sync will be performed. Only labels will be ensured."
-            )
-            # At minimum, ensure priority labels exist
-            ensure_labels_exist(gh, owner, repo_name, dry_run)
-            print("✅ Label check complete. Nothing else to sync.")
-            return
+    if field_id is None:
+        print("Could not find a 'Priority' issue field in this repository.")
+        print("Label check complete. Nothing else to sync.")
+        return
 
-        print(f"   Project: {project_id}")
-        print(f"   Field: {field_id}")
-        print(f"   Options: {option_map}")
-        print()
+    print(f"  Priority field ID: {field_id}")
+    print()
 
-        # Ensure labels exist before syncing
-        print("🏷 Ensuring priority labels exist...")
-        ensure_labels_exist(gh, owner, repo_name, dry_run)
-        print()
-
-        # Determine sync direction based on trigger
-        if event_action == "labeled":
-            print("🔄 Syncing direction: label → field (new label detected)")
-            sync_labels_to_field(
-                gh, token, owner, repo_name, project_id, field_id, option_map, dry_run
-            )
-        elif event_action == "unlabeled":
-            print("🔄 Syncing direction: label → field (label removed)")
-            sync_labels_to_field(
-                gh, token, owner, repo_name, project_id, field_id, option_map, dry_run
-            )
-        elif event_type == "schedule":
-            print("🔄 Syncing direction: field → labels (scheduled run)")
-            sync_field_to_labels(
-                gh, token, owner, repo_name, project_id, field_id, dry_run
-            )
-        else:
-            print("🔄 Syncing direction: bidirectional (field wins on conflict)")
-            sync_bidirectional(
-                gh, token, owner, repo_name, project_id, field_id, option_map, dry_run
-            )
-
-        print()
-        print("✅ Priority sync complete.")
-
-    except Exception as exc:
-        print(f"❌ Sync failed: {exc}")
-        sys.exit(1)
-    finally:
-        gh.close()
+    # Sync
+    print("Syncing Priority field <-> labels...")
+    sync_full(token, owner, repo, field_id, dry_run)
+    print()
+    print("Priority sync complete.")
 
 
 if __name__ == "__main__":

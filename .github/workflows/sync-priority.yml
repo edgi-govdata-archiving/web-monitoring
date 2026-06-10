@@ -36,13 +36,12 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install PyGithub requests
+        run: pip install requests
 
       - name: Run priority sync
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python .github/scripts/sync_priority.py
-        # Pass dry_run flag from workflow_dispatch input when triggered manually
-        # Scheduled/event runs default to dry_run=false (real sync)
-        ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '--dry-run' || '' }}
+        run: >-
+          python .github/scripts/sync_priority.py
+          ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '--dry-run' || '' }}
